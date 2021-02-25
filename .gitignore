@@ -3,7 +3,7 @@ package-lock.json
 .git/
 
 # secure
-config/
+dev.js
 
 # vscode
 build/
