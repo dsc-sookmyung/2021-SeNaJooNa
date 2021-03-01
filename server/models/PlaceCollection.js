@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PlaceSchema = mongoose.Schema({
+const PlaceCollectionSchema = mongoose.Schema({
     placeId: {
         type:String
     },
@@ -12,6 +12,6 @@ const PlaceSchema = mongoose.Schema({
 
 
 
-const Place = mongoose.model('Place', PlaceSchema, 'Place');
+const PlaceCollection = mongoose.model('PlaceCollection', PlaceCollectionSchema, 'PlaceCollection');
 
-module.exports = { Place }
+module.exports = { PlaceCollection }
