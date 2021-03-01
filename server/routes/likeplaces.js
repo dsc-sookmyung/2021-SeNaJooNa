@@ -4,10 +4,10 @@ const router = express.Router();
 const { PlaceLike } = require("../models/PlaceLike");
 const { auth } = require("../middleware/auth");
 
-router.get('/', auth, (req, res) => {
-    PlaceLike.findOne({ userId:req.user._id, placeId:req.query.placeId }, function(err, doc) {
+router.get('/:placeId', auth, (req, res) => {
+    PlaceLike.findOne({ userId:req.user._id, placeId:req.params.placeId }, function(err, doc) {
         if (err) return res.json({ success: false, err });
-        return res.status(200).json(doc);
+        return res.status(200).json({ success: true, like: true });
     })
 })
 
@@ -18,8 +18,8 @@ router.get('/getPlaces', auth, (req, res) => {
     })
 })
 
-router.get('/count', (req, res) => {
-    PlaceLike.find({ placeId: req.query.placeId }, function(err, doc) {
+router.get('/count/:placeId', (req, res) => {
+    PlaceLike.find({ placeId: req.params.placeId }, function(err, doc) {
         if (err) return res.json({ success: false, err });
         return res.status(200).json({
             count: doc.length
@@ -39,9 +39,9 @@ router.post("/", auth, (req, res) => {
     });
 });
 
-router.delete("/", auth, (req, res) => {
+router.delete("/:placeId", auth, (req, res) => {
 
-    PlaceLike.deleteOne({ placeId:req.query.placeId, userId:req.user._id }, function (err) {
+    PlaceLike.deleteOne({ placeId:req.params.placeId, userId:req.user._id }, function (err) {
         if (err) return res.json({ success: false, err });
         return res.status(200).json({
             success: true
