@@ -11,7 +11,7 @@ router.get("/:placeId", (req, res) => {
 });
 
 router.post("/", auth, (req, res) => {
-    const comment = new PlaceComment(req.body);
+    const comment = new PlaceComment({ ...req.body, userId:req.user._id });
 
     comment.save((err, doc) => {
         if (err) return res.json({ success: false, err });
