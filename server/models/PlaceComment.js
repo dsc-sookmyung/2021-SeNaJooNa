@@ -20,6 +20,14 @@ const PlaceCommentSchema = mongoose.Schema({
 
 })
 
+PlaceCommentSchema.pre('save', function(next){
+    now = new Date();
+    if(!this.created_at) {
+        this.created_at = now
+    }
+    next();
+});
+
 const PlaceComment = mongoose.model('PlaceComment', PlaceCommentSchema, 'PlaceComment');
 
 module.exports = { PlaceComment }
