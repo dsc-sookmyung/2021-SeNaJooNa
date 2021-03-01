@@ -12,11 +12,7 @@ const PlaceCommentSchema = mongoose.Schema({
     created_date: {
         type: Date,
         default: Date.now
-    },
-    collectionId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Collection',
-    },
+    }
 
 })
 

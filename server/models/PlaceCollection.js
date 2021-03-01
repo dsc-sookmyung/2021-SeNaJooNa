@@ -1,14 +1,13 @@
 const mongoose = require('mongoose');
 
 const PlaceSchema = mongoose.Schema({
-    placeKakaoId: {
+    placeId: {
         type:String
     },
-    name: String,
-    address: String,
-    x: Number,
-    y: Number,
-    thumbnail: String
+    collectionId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Collection',
+    }
 })
 
 
