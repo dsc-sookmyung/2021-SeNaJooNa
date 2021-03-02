@@ -3,9 +3,19 @@ const router = express.Router();
 const { Category } = require('../models/Category');
 
 router.get("/", (req, res) => {
-    Category.find({}, function (err, Category) {
+    Category.find({}, function (err, categories) {
         if (err) return res.status(500).send("Category failed");
-        res.status(200).send(Category);
+        res.status(200).send(categories);
+    });
+});
+
+router.get("/title", (req, res) => {
+    Category.find({}, { "title": true, "_id": true }, function (err, categories) {
+        if (err) return res.status(500).send("Category failed");
+        res.status(200).send({
+            success: true,
+            categories
+        });
     });
 });
 
