@@ -20,10 +20,19 @@ router.get("/", (req, res) => {
     })
 });
 
+router.get("/category/", (req, res) => {
+    Collection.find({ 'categoryId': req.query.categoryId })
+        .exec((err, collection) => {
+            if (err) return res.status(500).send("Category Collection failed");
+            if (!collection) return res.status(404).send("No Collection");
+            res.status(200).send({ success: true, collection });
+        });
+});
+
 router.get("/:id", (req, res) => {
     Collection.findOne({ _id: req.params.id })
         .exec((err, collection) => {
-            if (err) return res.status(500).send("Category Collection failed");
+            if (err) return res.status(500).send("Collection read failed");
             if (!collection) return res.status(404).send("No Collection");
             res.status(200).send({ success: true, collection });
         });
