@@ -23,6 +23,10 @@ const collectionSchema = Schema({
     categoryId: {
         type: Schema.Types.ObjectId,
         ref: 'Category'
+    },
+    like: {
+        type: Number,
+        default: 0
     }
 });
 
