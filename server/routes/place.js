@@ -18,7 +18,7 @@ router.post("/", (req, res) => {
                 address: place.address_name,
                 x: place.x,
                 y: place.y
-            }, {upsert: true, new:true}, (err, doc) =>{
+            }, {upsert: true, new:true, setDefaultsOnInsert: true}, (err, doc) =>{
                 if (err) return reject(err);
                 resolve(doc)
             } )
