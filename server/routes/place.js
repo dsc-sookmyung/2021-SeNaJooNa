@@ -10,21 +10,21 @@ router.get("/:placeId", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    req.body.forEach(element => {
-        Place.findOneAndUpdate({placeKakaoId: element.id}, {
-            placeKakaoId: element.id,
-            name: element.place_name,
-            address: element.address_name,
-            x: element.x,
-            y: element.y
-        }, {upsert: true}
-        , (err) => {
-            if (err) return res.json({ success: false, err });
-            return res.status(200).send({ success: true });
+    function addNewPlace(place) {
+        return new Promise(function(resolve, reject){
+            Place.findOneAndUpdate({placeKakaoId: place.id}, {
+                placeKakaoId: place.id,
+                name: place.place_name,
+                address: place.address_name,
+                x: place.x,
+                y: place.y
+            }, {upsert: true, new:true}, (err, doc) =>{
+                if (err) return reject(err);
+                resolve(doc)
+            } )
         })
-
-
-    });
+    }
+    Promise.all(req.body.map(addNewPlace)).then((result)=>{return res.status(200).send(result)})
 });
 
 module.exports = router;
