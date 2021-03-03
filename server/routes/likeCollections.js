@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { CollectionLike } = require("../models/CollectionLike");
-
+const { Collection } = require("../models/Collection");
 
 //로그인한 사람이 좋아요를 누른 목록
 router.get('/', (req, res) => {
@@ -29,20 +29,44 @@ router.post('/', (req, res) => {
 
     collectionLike.save((err, like) => {
         if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-            success: true,
-        });
+        Collection.findByIdAndUpdate({ _id: req.body.collectionId },
+            {
+                $inc: {
+                    "like": 1
+                }
+            }, { new: true })
+            .exec((err, doc) => {
+                if (err) return res.status(500).send("Like Update failed");
+                res.status(200).send({ success: true, doc });;
+            });
+        // return res.status(200).json({
+        //     success: true,
+        // });
     });
+
+
+
 });
 
 //좋아요 취소
 router.delete('/', (req, res) => {
     CollectionLike.deleteOne(req.body, (err, doc) => {
         if (err) return res.json({ success: false, err })
-        return res.status(200).json({
-            success: true
-        })
+        Collection.findByIdAndUpdate({ _id: req.body.collectionId },
+            {
+                $inc: {
+                    "like": -1
+                }
+            }, {new: true})
+            .exec((err, doc) => {
+                if (err) return res.status(500).send("Like Update failed");
+                res.status(200).send({ success: true, doc });;
+            });
+        // return res.status(200).json({
+        //     success: true
+        // })
     })
 })
 
 module.exports = router;
+
