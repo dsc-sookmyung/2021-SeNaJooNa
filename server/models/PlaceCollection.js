@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 
 const PlaceCollectionSchema = mongoose.Schema({
     placeId: {
-        type:String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Place',
     },
     collectionId: {
         type: mongoose.Schema.Types.ObjectId,

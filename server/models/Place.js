@@ -8,7 +8,11 @@ const PlaceSchema = mongoose.Schema({
     address: String,
     x: Number,
     y: Number,
-    thumbnail: String
+    thumbnail: String,
+    like_count: {
+        type: Number,
+        default: 0
+    }
 })
 
 
