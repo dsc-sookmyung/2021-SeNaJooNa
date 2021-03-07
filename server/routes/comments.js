@@ -4,7 +4,7 @@ const { PlaceComment } = require("../models/PlaceComment");
 const { auth } = require("../middleware/auth");
 
 router.get("/:placeId", (req, res) => {
-    PlaceComment.find({ placeId: req.params.placeId }).sort('-created_date').exec((err, doc) => {
+    PlaceComment.find({ placeId: req.params.placeId }).populate({path:'userId', select:'name'}).sort('-created_date').exec((err, doc) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).send(doc);
     });
