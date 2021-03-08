@@ -1,0 +1,39 @@
+.fourthPage{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left{
+    background-color: antiquewhite;
+}
+
+.right{
+    background-color: aquamarine;
+    text-align: center;
+}
+
+
+.text{
+
+}
+.likeButton{
+
+}
+.content{
+
+}
+.textBig{
+    
+}
+.commentBtn{
+
+} 
+.popup{
+
+}
+.popupForm{
+    display: none;
+}
+.popupFormContainer{
+
+}
