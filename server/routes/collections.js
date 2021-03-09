@@ -1,16 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const { Collection } = require('../models/Collection');
+const { upload } = require('../middleware/upload');
 
-router.post("/", (req, res) => {
-    const collection = new Collection(req.body)
+router.post('/', upload.single('file'), (req, res) => {
+
+    let collection = new Collection(req.body);
+    collection.thumbnail = req.file.location;
 
     collection.save((err, collection) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).json({
-            success: true
+            success: true,
+            collection
         });
     });
+
 });
 
 router.get("/", (req, res) => {
