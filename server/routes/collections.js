@@ -6,15 +6,19 @@ const { upload } = require('../middleware/upload');
 router.post('/', upload.single('file'), (req, res) => {
 
     let collection = new Collection(req.body);
-    collection.thumbnail = req.file.location;
+    if (req.file !== undefined) {
+        collection.thumbnail = req.file.location;
 
-    collection.save((err, collection) => {
-        if (err) return res.json({ success: false, err });
-        return res.status(200).json({
-            success: true,
-            collection
+        collection.save((err, collection) => {
+            if (err) return res.json({ success: false, err });
+            return res.status(200).json({
+                success: true,
+                collection
+            });
         });
-    });
+    }
+    else
+        return res.status(400).send("Image Upload failed");
 
 });
 
@@ -43,8 +47,15 @@ router.get("/:id", (req, res) => {
         });
 });
 
-router.put("/:id", (req, res) => {
-    Collection.findByIdAndUpdate({ _id: req.params.id }, req.body, { new: true })
+router.put("/:id", upload.single('file'), (req, res) => {
+    let collection = new Collection(req.body);
+
+    if (req.file !== undefined) {
+        collection.thumbnail = req.file.location;
+
+    }
+    
+    Collection.findByIdAndUpdate({ _id: req.params.id }, collection, { new: true })
         .exec((err, collection) => {
             if (err) return res.status(500).send("Collection Update failed");
             res.status(200).send({ success: true, collection });;
