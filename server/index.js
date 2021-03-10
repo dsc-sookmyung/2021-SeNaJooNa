@@ -34,8 +34,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));
-
+app.use('/api/category', require('./routes/categories'));
 app.use('/api/collections', require('./routes/collections'));
+app.use('/api/place', require('./routes/place'));
+app.use('/api/places', require('./routes/places'));
+app.use('/api/like/place', require('./routes/likeplaces'));
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
