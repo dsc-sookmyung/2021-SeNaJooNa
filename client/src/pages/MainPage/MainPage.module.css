@@ -1,0 +1,47 @@
+.mainPage{
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 250px;
+}
+
+.text{
+    margin: 30px;
+}
+
+.textBig{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: large;
+}
+
+.textSmall{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: small;
+    color: gray;
+}
+
+.textAndImage{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.part1{
+    background-color: lavender;
+    height: 300px;
+}
+
+.cards{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.part2{
+    background-color:ivory;
+}
+
+.part3{
+    background-color:honeydew;
+}

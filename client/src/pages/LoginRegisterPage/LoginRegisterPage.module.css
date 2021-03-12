@@ -1,0 +1,31 @@
+.loginRegisterPage{
+    width: fit-content;
+}
+
+.login{
+    /* display: flex;
+    flex-direction: column; */
+    /* flex: 1; */
+    /* padding: 100px; */
+    background-color:aliceblue;
+}
+
+.register{
+    /* flex: 1; */
+    /* padding: 200px; */
+    background-color: antiquewhite;
+}
+
+.button{
+    float: right;
+    width: 70px;
+}
+
+.input{
+    width: 80%;
+}
+
+.hr{
+    border: 1px solid #f1f1f1;
+
+}
