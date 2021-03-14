@@ -12,7 +12,7 @@ function MainPage() {
         axios.get('/api/category').then((response)=>{
             setCategories(response.data)
         })
-    });
+    }, []);
 
     return (
         <div>
@@ -20,7 +20,7 @@ function MainPage() {
                 <div className={styles.text}>요즘 핫한 그곳! 카테고리별로 살펴볼까요?</div>
                 <div className={styles.cards}>
                     {categories.map((category)=>(
-                        <CategoryCard category={category} key={category._id} />
+                        <CategoryCard category={category} key={category._id} categories={categories} />
                     ))}
                     {/* <CategoryCard />
                     <CategoryCard />
@@ -35,15 +35,15 @@ function MainPage() {
                 </div>
                 <div>
                     {/* two images */}
-                    <img src='../../../logo192.png' />
-                    <img src='../../../logo192.png' />
+                    <img src='../../../logo192.png' alt="logo" />
+                    <img src='../../../logo192.png' alt="logo" />
                 </div>
             </div>
             <div className={`${styles.mainPage} ${styles.part3} ${styles.textAndImage}`}>
                 <div>
                     {/* two images */}
-                    <img src='../../../logo192.png' />
-                    <img src='../../../logo192.png' />
+                    <img src='../../../logo192.png' alt="logo" />
+                    <img src='../../../logo192.png' alt="logo" />
                 </div>
 
                 <div>
