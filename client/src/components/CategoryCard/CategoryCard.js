@@ -16,7 +16,6 @@ function CategoryCard(props) {
 
     }, [])
     return (
-
         <Link to={{
             pathname: '/second',
             state: {
@@ -25,15 +24,15 @@ function CategoryCard(props) {
             }
         }}>
             <div className={styles.categoryCard}>
-                <img className={styles.img} src={props.category.thumbnail} alt={props.category.title} />
+                <div className={styles.imgContainer}>
+                    <img className={styles.img} src={props.category.thumbnail} alt={props.category.title} />
+                </div>
                 <div className={styles.content}>
                     <div className={styles.title}>{props.category.title}</div>
                     <div className={styles.detail}>{props.category.description}</div>
                 </div>
-                {/* <div className={styles.imgCover}></div> */}
             </div>
         </Link>
-
     )
 }
 

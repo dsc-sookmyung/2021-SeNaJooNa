@@ -32,11 +32,9 @@
 .img{
     width: 100%;
     height: 100%;
-    /* max-width: 100%; */
 }
 
 .title{
-    /* background-color: lightpink; */
     color: #f1f1f1;
     font-size: 16px;
     font-weight: 600;
@@ -45,7 +43,6 @@
 }
 
 .detail{
-    /* background-color: lightgreen; */
     color: #f1f1f1;
     font-size: 12px;
     padding: 5px 10px;
