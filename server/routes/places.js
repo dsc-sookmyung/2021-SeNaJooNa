@@ -11,7 +11,7 @@ router.get("/:collectionId", (req, res) => {
     })
 });
 
-router.post("/", auth, (req, res) => {
+router.post("/", (req, res) => {
     const placeCollection = new PlaceCollection(req.body);
 
     placeCollection.save((err, pcollection) => {
@@ -23,7 +23,7 @@ router.post("/", auth, (req, res) => {
     });
 });
 
-router.delete("/:placeId/:collectionId", auth, (req, res) => {
+router.delete("/:placeId/:collectionId", (req, res) => {
 
     placeCollection.deleteOne({ placeId:req.params.placeId, collectionId:req.params.collectionId }, function (err) {
         if (err) return res.json({ success: false, err });
