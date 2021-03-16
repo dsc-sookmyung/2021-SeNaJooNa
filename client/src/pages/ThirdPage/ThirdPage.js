@@ -23,7 +23,7 @@ function ThirdPage(props) {
             </div>
             <div className={styles.gridContainer}>
                 {places.map((place)=>(
-                    <PlaceCard place={place} key={place._id} />
+                    <PlaceCard place={place.placeId} key={place.placeId._id} />
                 ))}
 
             </div>
