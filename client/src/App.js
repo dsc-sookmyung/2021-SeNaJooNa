@@ -9,32 +9,34 @@ import {
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MainPage from './pages/MainPage/MainPage';
-import SecondPage from './pages/SecondPage/SecondPage';
-import ThirdPage from './pages/ThirdPage/ThirdPage';
+import SecondPage from './pages/CollectionPage/SecondPage';
+import ThirdPage from './pages/PlacePage/ThirdPage';
 import MyPage from './pages/MyPage/MyPage';
 
 import FourthPage from './pages/FourthPage/FourthPage';
 import LoginRegisterPage from './pages/LoginRegisterPage/LoginRegisterPage';
+import Auth from './hoc/auth';
 
 function App() {
   return (
     <div>
-      <Header />
-
       <Router>
+        <Header />
+
         <div>
           <Switch>
-            <Route exact path='/' component={MainPage} />
-            <Route path='/second' component={SecondPage} />
-            <Route path='/third' component={ThirdPage} />
-            <Route path='/mypage' component={MyPage} />
-            <Route path='/fourth' component={FourthPage} />
-            <Route path='/login' component={LoginRegisterPage} />
+            <Route exact path='/' component={Auth(MainPage, null)} />
+            <Route path='/collection' component={Auth(SecondPage, null)} />
+            <Route path='/place' component={Auth(ThirdPage, null)} />
+            <Route path='/mypage' component={Auth(MyPage,true)} />
+            <Route path='/fourth' component={Auth(FourthPage,null)} />
+            <Route path='/login' component={Auth(LoginRegisterPage, false)} />
           </Switch>
         </div>
-      </Router>
 
-      <Footer />
+
+        <Footer />
+      </Router>
     </div>
   );
 }
