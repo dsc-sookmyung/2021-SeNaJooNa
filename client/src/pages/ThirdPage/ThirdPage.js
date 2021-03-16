@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
 
 import styles from './ThirdPage.module.css';
 
 import PlaceCard from '../../components/PlaceCard/PlaceCard';
 
-function ThirdPage() {
+function ThirdPage(props) {
+    const [places, setPlaces] = useState([])
+    useEffect(() => {
+        axios.get(`/api/places/${props.location.state.collection._id}`).then((response)=>{
+            setPlaces(response.data)
+        })
+    }, []);
     return (
         <div className={styles.thirdPage}>
             {/* <div className={styles.left}> */}
@@ -15,17 +22,9 @@ function ThirdPage() {
                 <button className={styles.like}>❤ Collection Like</button>
             </div>
             <div className={styles.gridContainer}>
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
+                {places.map((place)=>(
+                    <PlaceCard place={place.placeId} key={place.placeId._id} />
+                ))}
 
             </div>
             {/* </div> */}
