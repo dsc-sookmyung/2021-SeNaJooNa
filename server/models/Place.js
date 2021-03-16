@@ -5,10 +5,6 @@ const PlaceSchema = mongoose.Schema({
     address: String,
     thumbnail: [String],
     description: String,
-    collectionId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Collection'
-    },
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
