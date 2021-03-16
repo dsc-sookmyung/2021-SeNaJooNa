@@ -3,6 +3,7 @@ const multer = require('multer');
 const multerS3 = require('multer-s3');
 
 const s3 = new awssdk.S3();
+
 const upload = multer({
     storage: multerS3({
         s3: s3,

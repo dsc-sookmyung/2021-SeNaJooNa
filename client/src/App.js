@@ -14,7 +14,8 @@ import ThirdPage from './pages/PlacePage/ThirdPage';
 import MyPage from './pages/MyPage/MyPage';
 
 import FourthPage from './pages/FourthPage/FourthPage';
-import LoginRegisterPage from './pages/LoginRegisterPage/LoginRegisterPage';
+import LoginPage from './pages/LoginRegisterPage/LoginPage';
+import RegisterPage from './pages/LoginRegisterPage/RegisterPage';
 import Auth from './hoc/auth';
 
 function App() {
@@ -28,9 +29,10 @@ function App() {
             <Route exact path='/' component={Auth(MainPage, null)} />
             <Route path='/collection' component={Auth(SecondPage, null)} />
             <Route path='/place' component={Auth(ThirdPage, null)} />
-            <Route path='/mypage' component={Auth(MyPage,true)} />
-            <Route path='/fourth' component={Auth(FourthPage,null)} />
-            <Route path='/login' component={Auth(LoginRegisterPage, false)} />
+            <Route path='/mypage' component={Auth(MyPage, true)} />
+            <Route path='/fourth' component={Auth(FourthPage, null)} />
+            <Route path='/login' component={Auth(LoginPage, false)} />
+            <Route path='/register' component={Auth(RegisterPage, false)} />
           </Switch>
         </div>
 

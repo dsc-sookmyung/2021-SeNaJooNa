@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import {loginUser} from '../../actions/user_action';
 import styles from './LoginRegisterPage.module.css';
 import { withRouter } from 'react-router-dom';
-function LoginRegisterPage(props) {
+function LoginPage(props) {
 
     const dispatch = useDispatch();
 
@@ -57,19 +57,9 @@ function LoginRegisterPage(props) {
                         <button type='submit' className={styles.button}>Log In</button>
                     </form>
                 </div>
-
-                <div className={`${styles.formBox} ${styles.register}`}>
-                    <h2>Register</h2>
-
-                    <hr className={styles.hr} />
-                    <div className={styles.registerEmptyBlock}>
-                    </div>
-
-                    <button type='submit' className={styles.button}>Register</button>
-                </div>
             </div>
         </div>
     )
 }
 
-export default withRouter(LoginRegisterPage)
+export default withRouter(LoginPage)

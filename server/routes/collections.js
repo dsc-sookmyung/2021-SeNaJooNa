@@ -54,7 +54,7 @@ router.put("/:id", upload.single('file'), (req, res) => {
         collection.thumbnail = req.file.location;
 
     }
-    
+
     Collection.findByIdAndUpdate({ _id: req.params.id }, collection, { new: true })
         .exec((err, collection) => {
             if (err) return res.status(500).send("Collection Update failed");
