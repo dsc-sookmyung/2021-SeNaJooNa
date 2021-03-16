@@ -11,4 +11,26 @@ router.get("/:collectionId", (req, res) => {
     })
 });
 
+router.post("/", auth, (req, res) => {
+    const placeCollection = new PlaceCollection(req.body);
+
+    placeCollection.save((err, pcollection) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({
+            success: true,
+            pcollection
+        });
+    });
+});
+
+router.delete("/:placeId/:collectionId", auth, (req, res) => {
+
+    placeCollection.deleteOne({ placeId:req.params.placeId, collectionId:req.params.collectionId }, function (err) {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({
+            success: true
+        });
+    })
+});
+
 module.exports = router;
