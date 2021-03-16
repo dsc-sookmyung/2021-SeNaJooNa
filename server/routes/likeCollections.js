@@ -57,7 +57,7 @@ router.delete('/', (req, res) => {
                 $inc: {
                     "like": -1
                 }
-            }, {new: true})
+            }, { new: true })
             .exec((err, doc) => {
                 if (err) return res.status(500).send("Like Update failed");
                 res.status(200).send({ success: true, doc });;

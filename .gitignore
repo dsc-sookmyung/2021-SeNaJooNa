@@ -4,6 +4,7 @@ package-lock.json
 
 # secure
 dev.js
+.env
 
 # vscode
 build/
