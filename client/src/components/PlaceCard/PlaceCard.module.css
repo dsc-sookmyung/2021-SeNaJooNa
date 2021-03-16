@@ -1,7 +1,7 @@
 .placeCard{
-    width: 220px;
-    height: 300px;
-    background-color: rgb(109, 109, 109);
+    width: 200px;
+    height: 220px;
+    background-color: gray;
     position: relative;
     border-radius: 20px;
     overflow: hidden;
@@ -9,32 +9,41 @@
 
 .like{
     position: absolute;
-    background-color: rgba(21, 13, 13, 0.7);
-    color: rgb(255 255 255/85%);
+    background-color: rgb(0, 0, 0, 0.7);
+    color: #f1f1f1;
     padding: 3px 8px;
     font-size: 12px;
     border-radius: 6px;
     top: 10px;
-    z-index: 1;
-    right: 8px;
+    right: 10px;
+}
+.like:hover{
+    cursor: pointer;
 }
 
+.imgContainer{
+    width: 200px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 .img{
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .title{
-    color: #fff;
+    color: #f1f1f1;
     font-size: 16px;
-    line-height: 1.4em;
-    padding: 12px 20px 0;
+    font-weight: 600;
+    padding: 5px 10px;
     overflow: hidden;
-    position: relative;
 }
 
 .detail{
-    color: #fff;
+    color: #f1f1f1;
     font-size: 12px;
-    padding: 12px 20px 20px;
-    position: relative;
+    padding: 5px 10px;
 }
