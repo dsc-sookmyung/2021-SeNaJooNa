@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styles from './CategoryCard.module.css';
 
 function CategoryCard(props) {
@@ -17,7 +17,7 @@ function CategoryCard(props) {
     }, [])
     return (
         <Link to={{
-            pathname: '/second',
+            pathname: '/collection',
             state: {
                 categoryId: props.category._id,
                 recommend: recommend
@@ -36,4 +36,4 @@ function CategoryCard(props) {
     )
 }
 
-export default CategoryCard
+export default withRouter(CategoryCard)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styles from './CollectionCard.module.css';
 
 function CollectionCard(props) {
@@ -24,4 +24,4 @@ function CollectionCard(props) {
     )
 }
 
-export default CollectionCard
+export default withRouter(CollectionCard)

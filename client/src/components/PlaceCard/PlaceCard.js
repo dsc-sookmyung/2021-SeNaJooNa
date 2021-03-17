@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styles from './PlaceCard.module.css';
 
 function PlaceCard(props) {
@@ -30,4 +30,4 @@ function PlaceCard(props) {
     )
 }
 
-export default PlaceCard
+export default withRouter(PlaceCard)

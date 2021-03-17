@@ -4,6 +4,7 @@ import axios from 'axios'
 import styles from './SecondPage.module.css';
 
 import CollectionCard from '../../components/CollectionCard/CollectionCard';
+import { withRouter } from 'react-router';
 
 function SecondPage(props) {
     const [collections, setCollections] = useState([])
@@ -58,4 +59,4 @@ function SecondPage(props) {
     )
 }
 
-export default SecondPage
+export default withRouter(SecondPage)
