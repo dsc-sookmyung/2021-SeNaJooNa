@@ -23,19 +23,28 @@ router.post('/', upload.single('file'), (req, res) => {
 });
 
 router.get("/", (req, res) => {
-    Collection.find({}, function (err, Collection) {
-        if (err) return res.status(500).send("Collection failed");
-        res.status(200).send({ success: true, Collection })
-    })
-});
-
-router.get("/category/", (req, res) => {
-    Collection.find({ 'categoryId': req.query.categoryId })
-        .exec((err, collection) => {
-            if (err) return res.status(500).send("Category Collection failed");
-            if (!collection) return res.status(404).send("No Collection");
-            res.status(200).send({ success: true, collection });
-        });
+    if (req.query.user) {
+        Collection.find({ 'creator': req.query.user })
+            .exec((err, collection) => {
+                if (err) return res.status(500).send("Collection Loading failed");
+                if (!collection) return res.status(404).send("No Collection");
+                res.status(200).send({ success: true, collection });
+            })
+    }
+    else if (req.query.categoryId) {
+        Collection.find({ 'categoryId': req.query.categoryId })
+            .exec((err, collection) => {
+                if (err) return res.status(500).send("Category Collection failed");
+                if (!collection) return res.status(404).send("No Collection");
+                res.status(200).send({ success: true, collection });
+            });
+    }
+    else {
+        Collection.find({}, function (err, Collection) {
+            if (err) return res.status(500).send("Collection failed");
+            res.status(200).send({ success: true, Collection })
+        })
+    }
 });
 
 router.get("/:id", (req, res) => {
@@ -54,7 +63,7 @@ router.put("/:id", upload.single('file'), (req, res) => {
         collection.thumbnail = req.file.location;
 
     }
-    
+
     Collection.findByIdAndUpdate({ _id: req.params.id }, collection, { new: true })
         .exec((err, collection) => {
             if (err) return res.status(500).send("Collection Update failed");
