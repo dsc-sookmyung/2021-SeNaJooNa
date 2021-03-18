@@ -1,21 +1,12 @@
 .commentCard{
     padding: 0px 20px;
-    background-color: lightyellow;
-}
-
-.textUser{
-    /* background-color: indianred; */
 }
 
 .textTime{
-    /* float: right; */
-    /* background-color: hotpink; */
     color: lightgray;
 }
 
 .textContent{
-    /* background-color: greenyellow; */
-    /* overflow: auto; */
    word-break: break-all;
 }
 
