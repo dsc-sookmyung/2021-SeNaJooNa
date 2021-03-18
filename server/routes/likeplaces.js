@@ -56,8 +56,8 @@ router.delete("/:placeId", auth, (req, res) => {
 
     PlaceLike.deleteOne({ placeId:req.params.placeId, userId:req.user._id }, function (err) {
         if (err) return res.json({ success: false, err });
-        PlaceLike.countDocuments({placeId: req.body.placeId}).then((count)=>{
-            Place.findOneAndUpdate({_id: req.body.placeId}, {$set : {like_count: count}}, (err, doc)=>{
+        PlaceLike.countDocuments({placeId: req.params.placeId}).then((count)=>{
+            Place.findOneAndUpdate({_id: req.params.placeId}, {$set : {like_count: count}},{new:true}, (err, doc)=>{
                 console.log(err)
                 return res.status(200).json({
                     success: true

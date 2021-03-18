@@ -4,12 +4,14 @@ import axios from 'axios'
 import styles from './ThirdPage.module.css';
 
 import PlaceCard from '../../components/PlaceCard/PlaceCard';
+import { withRouter } from 'react-router';
 
 function ThirdPage(props) {
     const [places, setPlaces] = useState([])
     useEffect(() => {
         axios.get(`/api/places/${props.location.state.collection._id}`).then((response)=>{
             setPlaces(response.data)
+            console.log(response.data)
         })
     }, []);
     return (
@@ -23,7 +25,7 @@ function ThirdPage(props) {
             </div>
             <div className={styles.gridContainer}>
                 {places.map((place)=>(
-                    <PlaceCard place={place.placeId} key={place.placeId._id} />
+                    <PlaceCard collection={props.location.state.collection._id} place={place.placeId} key={place.placeId._id} />
                 ))}
 
             </div>
@@ -35,4 +37,4 @@ function ThirdPage(props) {
     )
 }
 
-export default ThirdPage
+export default withRouter(ThirdPage)

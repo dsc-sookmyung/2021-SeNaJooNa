@@ -5,7 +5,7 @@ import styles from './CollectionCard.module.css';
 function CollectionCard(props) {
     return (
         <Link to={{
-            pathname: '/third',
+            pathname: '/place',
             state: {
                 collection: props.collection
             }
