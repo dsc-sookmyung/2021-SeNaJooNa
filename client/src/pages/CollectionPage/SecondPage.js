@@ -12,14 +12,14 @@ function SecondPage(props) {
 
     function getRecommend(rec){
         return new Promise(function(resolve, reject){
-            axios.get(`/api/collections/category?categoryId=${rec._id}`).then((response)=>{
+            axios.get(`/api/collections/?categoryId=${rec._id}`).then((response)=>{
                 resolve({ category:rec.description, collection: response.data.collection.slice(0,6)}) 
             })
         })
     }
     
     useEffect(() => {
-        axios.get(`/api/collections/category?categoryId=${props.location.state.categoryId}`).then((response)=>{
+        axios.get(`/api/collections/?categoryId=${props.location.state.categoryId}`).then((response)=>{
             setCollections(response.data.collection)
         })
         Promise.all(props.location.state.recommend.map(getRecommend)).then((result)=>{
