@@ -1,39 +1,238 @@
 .fourthPage{
+    padding: 20px;
+    background-color: lavender;
+}
+
+.gridContainer{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
+    gap: 30px;
 }
 
 .left{
-    background-color: antiquewhite;
+    grid: 1;
+    background-color: white;
+    padding: 10px;
 }
 
 .right{
-    background-color: aquamarine;
-    text-align: center;
+    grid: 1;
+    background-color: white;
+    padding: 10px;
 }
-
 
 .text{
+    display: inline-block;
+    margin: 0px 0px 30px;
+}
+
+.like{
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #805ACB;
+    color: white;
+    padding: 4px 10px;
+}
+
+.topPhoto{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.placePhoto{
+    grid: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+}
+.img{
+    border: 1px solid lightgreen;
+    width: 100%;
+    height: 100%;
 
 }
-.likeButton{
 
-}
-.content{
-
+.bottomInfo{
+    background-color: lightgreen;
+    margin: 5px 10px;
 }
 .textBig{
-    
+    font-size: 20px;
+    font-weight: 700;
 }
-.commentBtn{
 
+
+.commentInput{
+    margin: 10px 20px 0px;
+    width: 60%;
+}
+.leaveCommentBtn{
+    width: 120px;
+    border: 1px solid #805ACB;
+    outline: none;
+    background-color: white;
+    color: #805ACB;
+    padding: 5px 2px;
 } 
-.popup{
-
+.rightHr{
+    border: 1px solid lightgray;
+    margin: 10px 5px 5px;
 }
+
+.tempModal{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.4);
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.modalContent{
+    background-color: #fefefe;
+    width: 1200px;
+    padding: 30px;
+    border: 1px solid #888;
+    margin: 30px auto;
+}
+
+.close{
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.close:hover, .close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hr{
+    border: 1px solid #f1f1f1;
+    margin: 15px 0px 20px;
+}
+
+.selectCollectionDiv{
+    margin: 50px 0px 25px;
+    font-size: 17px;
+}
+.selectCollection{
+    font-size: 17px;
+    width: 180px;
+}
+
+.popupGridContainer{
+    display: grid;
+    grid-template-columns: 200px 880px;
+    gap: 40px;
+}
+
+.popupBtn{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 15px 0px;
+    background-color: #805ACB;
+    color: white;
+    font-size: 17px;
+    height: 50px;
+}
+
 .popupForm{
+    background-color: lavenderblush;
     display: none;
 }
-.popupFormContainer{
 
+.popupContent{
+    background-color: #fefefe;
+    width: 100%;
+    padding: 30px;
+    border: 1px solid #888;
+}
+
+.formCenter{
+    display: flex;
+    padding: 30px;
+}
+.formLeft{
+    flex: 50%;
+    padding-right: 50px;
+    border-right: 2px solid #f1f1f1;
+}
+.formRight{
+    flex: 50%;
+    padding-left: 50px;
+}
+
+.input{
+    padding: 12px 20px;
+    margin: 20px 0px;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.radioDiv{
+    font-size: 17px;
+    margin: 20px 0px 10px;
+}
+.radioLabel{
+    cursor: pointer;
+    margin-right: 15px;
+}
+.radioInput{
+    cursor: pointer;
+}
+
+.selectCategoryDiv{
+    margin: 50px 0px 25px;
+    font-size: 17px;
+}
+.selectCategory{
+    font-size: 17px;
+    width: 180px;
+}
+
+.takeThumbnailBtn{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 14px 20px;
+    margin: 15px 0px 20px;
+    background-color: #805ACB;
+    color: white;
+    border: none;
+    font-size: 17px;
+}
+
+.colorPicker{
+    font-size: 17px;
+    margin: 30px 0px 15px;
+}
+
+.modalBtn{
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    font-size: 17px;
+}
+.modalBtn:hover{
+    opacity: 1;
+}
+.cancelBtn{
+    background-color: #f44336;
+}
+.makeBtn{
+    background-color: #4caf50;
 }

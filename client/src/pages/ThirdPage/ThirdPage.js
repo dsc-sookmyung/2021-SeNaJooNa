@@ -11,7 +11,7 @@ function ThirdPage() {
             <div>
                 <div className={styles.text}>
                     특정 카테고리명 &#8250; 특정 컬렉션명
-                        </div>
+                </div>
                 <button className={styles.like}>❤ Collection Like</button>
             </div>
             <div className={styles.gridContainer}>
@@ -28,10 +28,6 @@ function ThirdPage() {
                 <PlaceCard />
 
             </div>
-            {/* </div> */}
-            {/* <div className={styles.right}>
-                지도
-            </div> */}
         </div>
     )
 }
