@@ -1,0 +1,64 @@
+.container{
+    background-color: #f2f2f2;
+}
+
+.makePlacePage{
+    width: 800px;
+    display: flex;
+    margin: auto;
+    padding: 100px;
+}
+
+.formBox{
+    flex: 1;
+    padding: 20px;
+    border: 3px solid #805ACB;
+    background-color: white;
+}
+
+.hr{
+    border: 1px solid #f1f1f1;
+    margin: 25px 0px;
+}
+
+.input{
+    padding: 12px 20px;
+    margin: 15px 0px;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.takeThumbnailBtn{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 200px;
+    padding: 14px 20px;
+    margin: 15px 0px 20px;
+    background-color: #805ACB;
+    color: white;
+    border: none;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.button{
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    font-size: 17px;
+}
+.button:hover{
+    opacity: 1;
+}
+.cancelBtn{
+    background-color: #f44336;
+}
+.makeBtn{
+    background-color: #4caf50;
+}
