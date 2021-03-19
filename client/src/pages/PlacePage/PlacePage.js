@@ -1,7 +1,7 @@
 import React from 'react'
 import CommentCard from '../../components/CommentCard/CommentCard';
 import styles from './FourthPage.module.css';
-function FourthPage() {
+function PlacePage() {
     return (
         <div className={styles.fourthPage}>
             <div>
@@ -138,5 +138,5 @@ function openForm() {
 function closeForm() {
     document.getElementById('fourthPopupForm').style.display = 'none';
 }
-export default FourthPage
+export default PlacePage
 

@@ -9,11 +9,11 @@ import {
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MainPage from './pages/MainPage/MainPage';
-import SecondPage from './pages/CollectionPage/SecondPage';
-import ThirdPage from './pages/PlacePage/ThirdPage';
+import CategoryPage from './pages/CategoryPage/CategoryPage';
+import CollectionPage from './pages/CollectionPage/CollectionPage';
 import MyPage from './pages/MyPage/MyPage';
 
-import FourthPage from './pages/FourthPage/FourthPage';
+import PlacePage from './pages/PlacePage/PlacePage';
 import LoginPage from './pages/LoginRegisterPage/LoginPage';
 import RegisterPage from './pages/LoginRegisterPage/RegisterPage';
 import Auth from './hoc/auth';
@@ -27,10 +27,10 @@ function App() {
         <div>
           <Switch>
             <Route exact path='/' component={Auth(MainPage, null)} />
-            <Route path='/collection' component={Auth(SecondPage, null)} />
-            <Route path='/place' component={Auth(ThirdPage, null)} />
+            <Route path='/category' component={Auth(CategoryPage, null)} />
+            <Route path='/collection' component={Auth(CollectionPage, null)} />
             <Route path='/mypage' component={Auth(MyPage, true)} />
-            <Route path='/fourth' component={Auth(FourthPage, null)} />
+            <Route path='/place' component={Auth(PlacePage, null)} />
             <Route path='/login' component={Auth(LoginPage, false)} />
             <Route path='/register' component={Auth(RegisterPage, false)} />
           </Switch>

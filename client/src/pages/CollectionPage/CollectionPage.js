@@ -6,7 +6,7 @@ import styles from './ThirdPage.module.css';
 import PlaceCard from '../../components/PlaceCard/PlaceCard';
 import { withRouter } from 'react-router';
 
-function ThirdPage(props) {
+function CollectionPage(props) {
     const [places, setPlaces] = useState([])
     useEffect(() => {
         axios.get(`/api/places/${props.location.state.collection._id}`).then((response)=>{
@@ -37,4 +37,4 @@ function ThirdPage(props) {
     )
 }
 
-export default withRouter(ThirdPage)
+export default withRouter(CollectionPage)

@@ -51,7 +51,7 @@ function PlaceCard(props) {
                         place: props.place
                     }
                 }}> */}
-                <Link to={`/fourth?collection=${props.collection}&place=${props.place._id}`}>
+                <Link to={`/place?collection=${props.collection}&place=${props.place._id}`}>
                     <div className={styles.imgContainer}>
                         <img className={styles.img} src={image} />
                     </div>

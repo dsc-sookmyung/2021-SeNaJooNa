@@ -6,7 +6,7 @@ import styles from './SecondPage.module.css';
 import CollectionCard from '../../components/CollectionCard/CollectionCard';
 import { withRouter } from 'react-router';
 
-function SecondPage(props) {
+function CategoryPage(props) {
     const [collections, setCollections] = useState([])
     const [recommend, setRecommend] = useState([])
 
@@ -59,4 +59,4 @@ function SecondPage(props) {
     )
 }
 
-export default withRouter(SecondPage)
+export default withRouter(CategoryPage)

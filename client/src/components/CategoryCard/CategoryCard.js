@@ -17,7 +17,7 @@ function CategoryCard(props) {
     }, [])
     return (
         <Link to={{
-            pathname: '/collection',
+            pathname: '/category',
             state: {
                 categoryId: props.category._id,
                 recommend: recommend
