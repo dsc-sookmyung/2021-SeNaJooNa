@@ -16,6 +16,7 @@ import MyPage from './pages/MyPage/MyPage';
 import PlacePage from './pages/PlacePage/PlacePage';
 import LoginPage from './pages/LoginRegisterPage/LoginPage';
 import RegisterPage from './pages/LoginRegisterPage/RegisterPage';
+import MakeCollectionPage from './pages/MakeCollectionPage/MakeCollectionPage';
 import Auth from './hoc/auth';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path='/place' component={Auth(PlacePage, null)} />
             <Route path='/login' component={Auth(LoginPage, false)} />
             <Route path='/register' component={Auth(RegisterPage, false)} />
+            <Route path='/makeCollection' component={Auth(MakeCollectionPage, null)} />
           </Switch>
         </div>
 
