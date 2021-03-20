@@ -13,19 +13,21 @@ router.get("/:placeId", (req, res) => {
 router.post("/", auth, (req, res) => {
     const comment = new PlaceComment({ ...req.body, userId:req.user._id });
 
-    comment.save((err, doc) => {
+    comment.save((err, comment) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).json({
-            success: true
+            success: true,
+            comment
         });
     });
 });
 
 router.put("/:commentId", (req, res) => {
-    PlaceComment.findOneAndUpdate({ _id:req.params.commentId }, { content: req.body.content }, function (err) {
+    PlaceComment.findOneAndUpdate({ _id:req.params.commentId }, { content: req.body.content }, {new:true}, function (err, comment) {
         if (err) return res.json({ success: false, err });
         return res.status(200).json({
-            success: true
+            success: true,
+            comment
         });
     })
 });
