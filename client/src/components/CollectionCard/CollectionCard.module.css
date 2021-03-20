@@ -54,3 +54,20 @@
     width:fit-content;
     cursor: pointer;
 }
+
+.collectionEmptyCard{
+    width: 200px;
+    height: 150px;
+    position: relative;
+    border-radius: 20px;
+    background-color: gray;
+}
+
+.emptyText{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 150px;
+}
