@@ -1,14 +1,78 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import CommentCard from '../../components/CommentCard/CommentCard';
 import styles from './FourthPage.module.css';
-function PlacePage() {
+import { useDispatch } from 'react-redux'
+import { auth } from '../../actions/user_action'
+import { Link, withRouter } from 'react-router-dom';
+import queryString from 'query-string'
+import axios from 'axios';
+
+function PlacePage(props) {
+    const [isAuth, setIsAuth] = useState(false)
+    const [isLiked, setIsLiked] = useState(false)
+    const [place, setPlace] = useState({})
+    const [image, setImage] = useState([])
+    const [comments, setComments] = useState([])
+    const [user, setUser] = useState("")
+    const [userName, setUserName] = useState("")
+    const [commentInput, setCommentInput] = useState("")
+    const [collections, setCollections] = useState([])
+    const [collectionValue, setCollectionValue] = useState("")
+    const params = queryString.parse(props.location.search);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(auth()).then(response => {
+            if (response.payload.isAuth) {
+                setIsAuth(true)
+                setUser(response.payload._id)
+                setUserName(response.payload.name)
+                axios.get(`/api/collections?user=${response.payload._id}`).then((response)=>{
+                    setCollections(response.data.collection)
+                })
+            }
+        })
+        axios.get(`/api/place/${params.place}`).then((response)=>{
+            setPlace(response.data.place)
+            setImage(response.data.place.thumbnail)
+        })
+        axios.get(`/api/comment/${params.place}`).then((response)=>{
+            setComments(response.data)
+        })
+        
+    }, [])
+
+    function onHandleComment(e){
+        setCommentInput(e.target.value)
+    }
+    function onSubmitComment(){
+        axios.post(`/api/comment`, {placeId:params.place, content:commentInput}).then((response)=>{
+            setComments([{...response.data.comment, userId:{_id:user, name:userName}}, ...comments])
+            setCommentInput("")
+        })
+    }
+
+    function handleCollectionChange(e){
+        setCollectionValue(e.target.value)
+    }
+    function submitCollection(){
+        axios.post(`/api/places`, {placeId:params.place, collectionId:collectionValue}).then((response)=>{
+            setCollectionValue("")
+            closeModal()
+        })
+    }
+
     return (
         <div className={styles.fourthPage}>
             <div>
                 <div className={styles.text}>
-                    category &#8250; collection &#8250; place
+                    category 
+                    &#8250; 
+                    collection
+                    &#8250; 
+                    {place.name}
                 </div>
-                <button className={styles.like} onClick={openModal}>
+                <button className={styles.like} onClick={() => openModal(isAuth)}>
                     ❤ Place Like
                 </button>
             </div>
@@ -16,22 +80,21 @@ function PlacePage() {
             <div className={styles.gridContainer}>
                 <div className={styles.left}>
                     <div className={styles.topPhoto}>
-                        <div class={styles.placePhoto}>
-                            <img src='../../../logo192.png' className={styles.img} />
-                        </div>
-                        <div class={styles.placePhoto}>
-                            <img src='../../../logo192.png' className={styles.img} />
-                        </div>
-                        <div class={styles.placePhoto}>
-                            <img src='../../../logo192.png' className={styles.img} />
-                        </div>
+                        {
+                            image.map((img)=>
+                            <div className={styles.placePhoto} key={img}>
+                                <img src={img} className={styles.img} />
+                            </div>
+                            )
+                        }
+                        
                     </div>
                     <div className={styles.bottomInfo}>
                         <div className={styles.textBig}>
-                            Place Name
+                            {place.name}
                         </div>
                         <div>
-                            Place Address
+                            {place.address}
                         </div>
                         <div>
                             The number of comments : 00
@@ -40,14 +103,16 @@ function PlacePage() {
                 </div>
                 <div className={styles.right}>
                     <div>
-                        <input type='text' placeholder='댓글 내용' className={styles.commentInput} />
-                        <button type='submit' className={styles.leaveCommentBtn}>Leave comment</button>
+                        <input type='text' placeholder='댓글 내용' className={styles.commentInput} value={commentInput} onChange={onHandleComment} />
+                        <button type='submit' className={styles.leaveCommentBtn} onClick={onSubmitComment}>Leave comment</button>
                     </div>
                     <hr className={styles.rightHr} />
                     <div>
-                        <CommentCard />
-                        <CommentCard />
-                        <CommentCard />
+                        {
+                            comments.map((comment)=>(
+                                <CommentCard comment={comment} user={user} key={comment._id}/>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
@@ -57,12 +122,13 @@ function PlacePage() {
                     <h2>Add Place to Collection</h2>
                     <hr className={styles.hr} />
                     <div className={styles.selectCollectionDiv}>
-                        <label for='selectCollection'>Collection list: &nbsp;&nbsp;&nbsp;</label>
-                        <select id='selectCollection' className={styles.selectCollection}>
-                            <option>Select collection: </option>
-                            <option>My Favorite</option>
-                            <option>Let's Eat</option>
-                            <option>For trip</option>
+                        <label htmlFor='selectCollection'>Collection list: &nbsp;&nbsp;&nbsp;</label>
+                        <select id='selectCollection' className={styles.selectCollection} value={collectionValue} onChange={handleCollectionChange}>
+                            {
+                                collections.map((collection)=>(
+                                    <option value={collection._id} key={collection._id}>{collection.title}</option>
+                                ))
+                            }
                         </select>
                     </div>
                     <div className={styles.popupGridContainer}>
@@ -76,21 +142,21 @@ function PlacePage() {
                                 <hr className={styles.hr} />
                                 <div className={styles.formCenter}>
                                     <div className={styles.formLeft}>
-                                        <label for='title'>Collection Title</label>
+                                        <label htmlFor='title'>Collection Title</label>
                                         <input type='text' id='title' placeholder='Enter Title' className={`${styles.input}`}></input>
-                                        <label for='content'>Collection Content</label>
+                                        <label htmlFor='content'>Collection Content</label>
                                         <input type='text' id='content' placeholder='Enter Content' className={`${styles.input}`}></input>
                                         <div className={styles.radioDiv}>
-                                            <text>공개 여부: &nbsp;&nbsp;&nbsp;</text>
+                                            <label>공개 여부: &nbsp;&nbsp;&nbsp;</label>
                                             <input type='radio' name='publicPrivate' id='public' value='public' className={styles.radioInput} />
-                                            <label for='public' className={styles.radioLabel}>공개</label>
+                                            <label htmlFor='public' className={styles.radioLabel}>공개</label>
                                             <input type='radio' name='publicPrivate' id='private' value='private' className={styles.radioInput} />
-                                            <label for='private' className={styles.radioLabel}>비공개</label>
+                                            <label htmlFor='private' className={styles.radioLabel}>비공개</label>
                                         </div>
                                     </div>
                                     <div className={styles.formRight}>
                                         <div className={styles.selectCategoryDiv}>
-                                            <label for='selectCategory'>카테고리 종류: &nbsp;&nbsp;&nbsp;</label>
+                                            <label htmlFor='selectCategory'>카테고리 종류: &nbsp;&nbsp;&nbsp;</label>
                                             <select id='selectCategory' className={styles.selectCategory}>
                                                 <option>카테고리</option>
                                                 <option>여행</option>
@@ -101,7 +167,7 @@ function PlacePage() {
                                         </div>
                                         <button className={`${styles.takeThumbnailBtn}`}>썸네일 가져오기</button>
                                         <div className={styles.colorPicker}>
-                                            <label for='color'>Select the Collection color: &nbsp;&nbsp;&nbsp;</label>
+                                            <label htmlFor='color'>Select the Collection color: &nbsp;&nbsp;&nbsp;</label>
                                             <input type='color' id='color' />
                                         </div>
                                     </div>
@@ -113,15 +179,18 @@ function PlacePage() {
                         </div>
                     </div>
                     <hr className={styles.hr} />
-                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`}>Cancel</button>
-                    <button className={`${styles.modalBtn} ${styles.makeBtn}`} onClick={closeModal}>Ok</button>
+                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`} onClick={closeModal}>Cancel</button>
+                    <button className={`${styles.modalBtn} ${styles.makeBtn}`} onClick={submitCollection}>Ok</button>
                 </div>
             </div >
         </div >
     )
 }
-function openModal() {
-    document.getElementById('tempModal').style.display = 'block';
+function openModal(isAuth) {
+    if(isAuth)
+        document.getElementById('tempModal').style.display = 'block';
+    else
+        window.location.href = '/login'
 }
 function closeModal() {
     document.getElementById('tempModal').style.display = 'none';
@@ -138,5 +207,5 @@ function openForm() {
 function closeForm() {
     document.getElementById('fourthPopupForm').style.display = 'none';
 }
-export default PlacePage
+export default withRouter(PlacePage)
 
