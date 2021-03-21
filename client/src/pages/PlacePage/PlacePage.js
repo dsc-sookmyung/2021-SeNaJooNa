@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import CommentCard from '../../components/CommentCard/CommentCard';
 import styles from './FourthPage.module.css';
 import { useDispatch } from 'react-redux'
@@ -27,36 +27,36 @@ function PlacePage(props) {
                 setIsAuth(true)
                 setUser(response.payload._id)
                 setUserName(response.payload.name)
-                axios.get(`/api/collections?user=${response.payload._id}`).then((response)=>{
+                axios.get(`/api/collections?user=${response.payload._id}`).then((response) => {
                     setCollections(response.data.collection)
                 })
             }
         })
-        axios.get(`/api/place/${params.place}`).then((response)=>{
+        axios.get(`/api/place/${params.place}`).then((response) => {
             setPlace(response.data.place)
             setImage(response.data.place.thumbnail)
         })
-        axios.get(`/api/comment/${params.place}`).then((response)=>{
+        axios.get(`/api/comment/${params.place}`).then((response) => {
             setComments(response.data)
         })
-        
+
     }, [])
 
-    function onHandleComment(e){
+    function onHandleComment(e) {
         setCommentInput(e.target.value)
     }
-    function onSubmitComment(){
-        axios.post(`/api/comment`, {placeId:params.place, content:commentInput}).then((response)=>{
-            setComments([{...response.data.comment, userId:{_id:user, name:userName}}, ...comments])
+    function onSubmitComment() {
+        axios.post(`/api/comment`, { placeId: params.place, content: commentInput }).then((response) => {
+            setComments([{ ...response.data.comment, userId: { _id: user, name: userName } }, ...comments])
             setCommentInput("")
         })
     }
 
-    function handleCollectionChange(e){
+    function handleCollectionChange(e) {
         setCollectionValue(e.target.value)
     }
-    function submitCollection(){
-        axios.post(`/api/places`, {placeId:params.place, collectionId:collectionValue}).then((response)=>{
+    function submitCollection() {
+        axios.post(`/api/places`, { placeId: params.place, collectionId: collectionValue }).then((response) => {
             setCollectionValue("")
             closeModal()
         })
@@ -66,36 +66,39 @@ function PlacePage(props) {
         <div className={styles.fourthPage}>
             <div>
                 <div className={styles.text}>
-                    category 
-                    &#8250; 
+                    category
+                    &#8250;
                     collection
-                    &#8250; 
+                    &#8250;
                     {place.name}
-                </div>
-                <button className={styles.like} onClick={() => openModal(isAuth)}>
-                    ❤ Place Like
-                </button>
+                </div>
+                <button className={styles.addTo} onClick={() => openModal(isAuth)}>
+                    ✔&nbsp;&nbsp;Add to Collection
+                </button>
             </div>
 
             <div className={styles.gridContainer}>
                 <div className={styles.left}>
                     <div className={styles.topPhoto}>
                         {
-                            image.map((img)=>
-                            <div className={styles.placePhoto} key={img}>
-                                <img src={img} className={styles.img} />
-                            </div>
+                            image.map((img) =>
+                                <div className={styles.placePhoto} key={img}>
+                                    <img src={img} className={styles.img} />
+                                </div>
                             )
                         }
-                        
+
                     </div>
                     <div className={styles.bottomInfo}>
+                        <button className={styles.like}>
+                            ❤&nbsp;&nbsp;Place Like
+                        </button>
                         <div className={styles.textBig}>
                             {place.name}
-                        </div>
+                        </div>
                         <div>
                             {place.address}
-                        </div>
+                        </div>
                         <div>
                             The number of comments : 00
                         </div>
@@ -104,13 +107,13 @@ function PlacePage(props) {
                 <div className={styles.right}>
                     <div>
                         <input type='text' placeholder='댓글 내용' className={styles.commentInput} value={commentInput} onChange={onHandleComment} />
-                        <button type='submit' className={styles.leaveCommentBtn} onClick={onSubmitComment}>Leave comment</button>
+                        <button type='submit' className={styles.leaveCommentBtn} onClick={onSubmitComment}>Leave</button>
                     </div>
                     <hr className={styles.rightHr} />
                     <div>
                         {
-                            comments.map((comment)=>(
-                                <CommentCard comment={comment} user={user} key={comment._id}/>
+                            comments.map((comment) => (
+                                <CommentCard comment={comment} user={user} key={comment._id} />
                             ))
                         }
                     </div>
@@ -125,7 +128,7 @@ function PlacePage(props) {
                         <label htmlFor='selectCollection'>Collection list: &nbsp;&nbsp;&nbsp;</label>
                         <select id='selectCollection' className={styles.selectCollection} value={collectionValue} onChange={handleCollectionChange}>
                             {
-                                collections.map((collection)=>(
+                                collections.map((collection) => (
                                     <option value={collection._id} key={collection._id}>{collection.title}</option>
                                 ))
                             }
@@ -187,7 +190,7 @@ function PlacePage(props) {
     )
 }
 function openModal(isAuth) {
-    if(isAuth)
+    if (isAuth)
         document.getElementById('tempModal').style.display = 'block';
     else
         window.location.href = '/login'

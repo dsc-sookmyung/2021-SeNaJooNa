@@ -25,8 +25,8 @@ function Header(props) {
 
     return (
         <div className={styles.header}>
-            <div className={styles.logo}>
-                <a href="/">OurPlace</a>
+            <div className={styles.logoDiv}>
+                <a href="/" className={styles.logo}>OurPlace</a>
             </div>
             <div className={styles.search}>
                 <select className={styles.select}>
@@ -40,13 +40,14 @@ function Header(props) {
                 </button>
             </div>
             {(user.userData && !user.userData.isAuth) ?
-                <div className={styles.login}>
-                    <a href="/login">LOG IN</a>
-                    <br></br>
-                    <a href="register">REGISTER</a>
+                <div className={styles.loginDiv}>
+                    <a href="/login"  className={styles.login}>LOG IN</a>
+                    &nbsp;&nbsp;<span className={styles.separator}>|</span>&nbsp;&nbsp;
+                    <a href="register"  className={styles.login}>REGISTER</a>
                 </div> :
-                <div className={styles.login}>
-                    <button onClick={onClickHandler}>LOGOUT</button>
+                <div className={styles.loginDiv}>
+                    <a onClick={onClickHandler}  className={styles.login}>LOGOUT</a>
+                    {/* <button onClick={onClickHandler}>LOGOUT</button> */}
                 </div>
             }
         </div>

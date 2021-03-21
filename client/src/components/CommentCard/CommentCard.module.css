@@ -1,9 +1,20 @@
+.btn{
+    outline: none;
+    cursor: pointer;
+}
+
 .commentCard{
     padding: 0px 20px;
 }
 
+.userName{
+    font-weight: 600;
+    font-size: 17px;
+}
+
 .textTime{
     color: lightgray;
+    float: right;
 }
 
 .textContent{

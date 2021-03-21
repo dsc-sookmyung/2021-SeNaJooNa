@@ -1,47 +1,68 @@
 .mainPage{
-    padding: 5px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding: 5px 30px;
     height: 250px;
 }
 
 .text{
     margin: 30px;
+    font-size: 30px;
 }
 
-.textBig{
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: large;
-}
-
-.textSmall{
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-size: small;
-    color: gray;
-}
-
-.textAndImage{
+.categoryCards{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-evenly;
 }
 
 .part1{
     background-color: lavender;
     height: 300px;
 }
-
-.cards{
-    display: flex;
-    justify-content: space-evenly;
-}
-
 .part2{
     background-color:ivory;
 }
-
 .part3{
     background-color:honeydew;
+}
+.part4{
+    background-color: lavenderblush;
+}
+
+.part{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.textBig{
+    /* background-color: lawngreen; */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+.textSmall{
+    /* background-color: lightcoral; */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: gray;
+}
+.btn{
+    font-size: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.collectionCards{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    /* display: grid;
+    grid-template-columns: repeat(5, 1fr); */
+}
+.placeCards{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    /* display: grid;
+    grid-template-columns: repeat(5, 1fr); */
 }
