@@ -99,15 +99,7 @@ function closeModal() {
 window.onclick = function (event) {
     if (event.target == document.getElementById('newCollectionModal')) {
         closeModal()
-        // document.getElementById('newCollectionModal').style.display = 'none';
     }
 };
-
-// window.onload = function () {
-//     document.getElementById('close').onclick = function () {
-//         closeModal()
-//         // document.getElementById('newCollectionModal').style.display = 'none';
-//     }
-// };
 
 export default MyPage
