@@ -26,6 +26,16 @@
     margin: 0px 0px 30px;
 }
 
+.addTo{
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #805ACB;
+    color: white;
+    padding: 4px;
+    width: 145px;
+}
 .like{
     float: right;
     border: none;
@@ -34,13 +44,16 @@
     background-color: #805ACB;
     color: white;
     padding: 4px 10px;
+    width: 105px;
 }
 
 .topPhoto{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    background-color: #f1f1f1;
 }
 .placePhoto{
+    background-color: white;
     grid: 1;
     display: flex;
     align-items: center;
@@ -49,31 +62,35 @@
     padding: 5px;
 }
 .img{
-    border: 1px solid lightgreen;
+    /* border: 1px solid #805ACB; */
     width: 100%;
     height: 100%;
 }
 
 .bottomInfo{
-    background-color: lawngreen;
-    margin: 5px 10px;
+    background-color: #f1f1f1;
+    margin: 10px;
 }
 .textBig{
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 
 .commentInput{
-    margin: 10px 20px 0px;
+    margin: 5px 10px 0px;
     width: 60%;
+    font-size: 15px;
+    padding: 5px 10px;
 }
 .leaveCommentBtn{
-    width: 120px;
-    border: 1px solid #805ACB;
+    width: 70px;
+    border: 1.5px solid #805ACB;
     outline: none;
     background-color: white;
     color: #805ACB;
-    padding: 5px 2px;
+    padding: 5px 3px;
+    font-size: 15px;
 }
 .rightHr{
     border: 1px solid lightgray;
