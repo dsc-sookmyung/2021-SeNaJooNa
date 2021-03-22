@@ -46,7 +46,8 @@ function Header(props) {
                     <a href="register"  className={styles.login}>REGISTER</a>
                 </div> :
                 <div className={styles.loginDiv}>
-                    <Link to='/mypage'>MY PAGE</Link>
+                    <Link to='/mypage' className={styles.login}>MY PAGE</Link>
+                    &nbsp;&nbsp;<span className={styles.separator}>|</span>&nbsp;&nbsp;
                     <a onClick={onClickHandler}  className={styles.login}>LOGOUT</a>
                 </div>
             }

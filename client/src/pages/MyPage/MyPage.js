@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CollectionCard from '../../components/CollectionCard/CollectionCard';
+import MakeCollectionCard from '../../components/CollectionCard/CollectionEmptyCard';
 import PlaceCard from '../../components/PlaceCard/PlaceCard';
 import { Link, withRouter } from 'react-router-dom';
 import styles from './MyPage.module.css';
@@ -27,13 +28,15 @@ function MyPage(props) {
                     ))}
 
                     <a href="/makeCollection/_make">
-                        <div className={styles.imgContainer}>
+                        {/* <div className={styles.imgContainer}>
                             +
                             </div>
                         <div className={styles.content}>
                             추가하기
-                            </div>
+                            </div> */}
+                        <MakeCollectionCard />
                     </a>
+
 
                     {/* <CollectionCard />
                     <CollectionCard />
@@ -62,19 +65,5 @@ function MyPage(props) {
         </div>
     )
 }
-
-// function openModal() {
-//     document.getElementById('newCollectionModal').style.display = 'block';
-// }
-
-// function closeModal() {
-//     document.getElementById('newCollectionModal').style.display = 'none';
-// }
-
-window.onclick = function (event) {
-    if (event.target == document.getElementById('newCollectionModal')) {
-        closeModal()
-    }
-};
 
 export default withRouter(MyPage);
