@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styles from './Header.module.css';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -46,6 +46,7 @@ function Header(props) {
                     <a href="register">REGISTER</a>
                 </div> :
                 <div className={styles.login}>
+                    <Link to='/mypage'>MY PAGE</Link>
                     <button onClick={onClickHandler}>LOGOUT</button>
                 </div>
             }

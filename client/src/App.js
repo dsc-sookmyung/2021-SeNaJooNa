@@ -35,7 +35,7 @@ function App() {
             <Route path='/place' component={Auth(PlacePage, null)} />
             <Route path='/login' component={Auth(LoginPage, false)} />
             <Route path='/register' component={Auth(RegisterPage, false)} />
-            <Route path='/makeCollection' component={Auth(MakeCollectionPage, null)} />
+            <Route path='/makeCollection/:id' component={Auth(MakeCollectionPage, null)} />
             <Route path='/makePlace' component={Auth(MakePlacePage, null)} />
           </Switch>
         </div>

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Collection } = require('../models/Collection');
 const { upload } = require('../middleware/upload');
+const { auth } = require('../middleware/auth');
 
 router.post('/', upload.single('file'), (req, res) => {
 
@@ -22,9 +23,9 @@ router.post('/', upload.single('file'), (req, res) => {
 
 });
 
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
     if (req.query.user) {
-        Collection.find({ 'creator': req.query.user })
+        Collection.find({ 'creator': req.user._id })
             .exec((err, collection) => {
                 if (err) return res.status(500).send("Collection Loading failed");
                 if (!collection) return res.status(404).send("No Collection");
@@ -57,16 +58,16 @@ router.get("/:id", (req, res) => {
 });
 
 router.put("/:id", upload.single('file'), (req, res) => {
-    let collection = new Collection(req.body);
+    let collection = {};
+    collection = req.body;
 
     if (req.file !== undefined) {
         collection.thumbnail = req.file.location;
-
     }
 
     Collection.findByIdAndUpdate({ _id: req.params.id }, collection, { new: true })
         .exec((err, collection) => {
-            if (err) return res.status(500).send("Collection Update failed");
+            if (err) return res.status(500).send(err);
             res.status(200).send({ success: true, collection });;
         })
 })
