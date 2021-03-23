@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { Place } = require("../models/Place");
 const { auth } = require("../middleware/auth");
-const { upload } = require('../middleware/upload');
+const { uploadPlace } = require('../middleware/uploadPlace');
 
 
-router.post('/', auth, upload.array('file'), (req, res) => {
+router.post('/', auth, uploadPlace.array('file'), (req, res) => {
 
     let place = new Place(req.body);
     if (req.files !== undefined) {
@@ -41,7 +41,7 @@ router.get("/:id", (req, res) => {
         });
 });
 
-router.put("/:id", upload.array('file'), (req, res) => {
+router.put("/:id", uploadPlace.array('file'), (req, res) => {
     let place = {};
 
     place.thumbnail = req.body.existed ? req.body.existed : []
