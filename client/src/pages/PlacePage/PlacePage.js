@@ -3,7 +3,7 @@ import CommentCard from '../../components/CommentCard/CommentCard';
 import styles from './FourthPage.module.css';
 import { useDispatch } from 'react-redux'
 import { auth } from '../../actions/user_action'
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import queryString from 'query-string'
 import axios from 'axios';
 
@@ -107,8 +107,8 @@ function PlacePage(props) {
                 <div className={styles.left}>
                     <div className={styles.topPhoto}>
                         {
-                            image.map((img) =>
-                                <div className={styles.placePhoto} key={img}>
+                            image.map((img, idx) =>
+                                <div className={idx==0? styles.placePhotoThumb:styles.placePhoto} key={img}>
                                     <img src={img} className={styles.img} />
                                 </div>
                             )
