@@ -37,11 +37,9 @@ function Header(props) {
                 </select>
                 <input type='text' placeholder='Search..' className={styles.input} value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}>
                 </input>
-                <a href={`/search?type=${searchType}&query=${searchQuery}`}>
-                    <button type='submit' className={styles.button}>
+                    <button type='submit' className={styles.button} onClick={()=>{window.location.href=`/search?type=${searchType}&query=${searchQuery}`}}>
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
-                </a>
             </div>
             {(user.userData && !user.userData.isAuth) ?
                 <div className={styles.loginDiv}>
