@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux';
 function Header(props) {
 
     const user = useSelector(state => state.user)
+    const [searchType, setSearchType] = useState("collection")
+    const [searchQuery, setSearchQuery] = useState("")
 
     const onClickHandler = () => {
         axios.get('api/users/logout')
@@ -29,15 +31,15 @@ function Header(props) {
                 <a href="/" className={styles.logo}>OurPlace</a>
             </div>
             <div className={styles.search}>
-                <select className={styles.select}>
+                <select className={styles.select} value={searchType} onChange={(e)=>{setSearchType(e.target.value)}}>
                     <option value='collection'>컬렉션</option>
                     <option value='place'>장소</option>
                 </select>
-                <input type='text' placeholder='Search..' className={styles.input}>
+                <input type='text' placeholder='Search..' className={styles.input} value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}>
                 </input>
-                <button type='submit' className={styles.button}>
-                    <FontAwesomeIcon icon={faSearch} />
-                </button>
+                    <button type='submit' className={styles.button} onClick={()=>{window.location.href=`/search?type=${searchType}&query=${searchQuery}`}}>
+                        <FontAwesomeIcon icon={faSearch} />
+                    </button>
             </div>
             {(user.userData && !user.userData.isAuth) ?
                 <div className={styles.loginDiv}>

@@ -29,9 +29,9 @@ router.get("/", (req, res) => {
     console.log("[search] ", req.query.search)
     Place.find({
         $or:[
-            {name: new RegExp(req.query.search)},
-            {description: new RegExp(req.query.search)},
-            {address: new RegExp(req.query.search)}
+            {name: new RegExp(req.query.search, 'i')},
+            {description: new RegExp(req.query.search, 'i')},
+            {address: new RegExp(req.query.search, 'i')}
         ]
     }, function (err, place) {
         res.status(200).send({ success: true, place })
