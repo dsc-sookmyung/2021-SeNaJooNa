@@ -20,6 +20,28 @@ function PlacePage(props) {
     const [collectionValue, setCollectionValue] = useState("")
     const params = queryString.parse(props.location.search);
 
+    function getComments(){
+        axios.get(`/api/comment/${params.place}`).then((response) => {
+            setComments(response.data)
+        })
+    }
+
+    function OnLikeHandler(){
+        if(isAuth){
+            if(!isLiked){
+                axios.post(`/api/like/place`,{placeId:params.place}).then((response)=>{
+                    setIsLiked(true)
+                })
+            } else {
+                axios.delete(`/api/like/place/${params.place}`).then((response)=>{
+                    setIsLiked(false)
+                })
+            }
+        } else {
+            window.location.href="/login"
+        }
+    }
+
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(auth()).then(response => {
@@ -29,6 +51,13 @@ function PlacePage(props) {
                 setUserName(response.payload.name)
                 axios.get(`/api/collections?user=${response.payload._id}`).then((response) => {
                     setCollections(response.data.collection)
+                    setCollectionValue(response.data.collection[0]._id)
+                })
+                axios.get(`/api/like/place/${params.place}`).then((response)=>{
+                    if(response.data.like)
+                        setIsLiked(true)
+                    else
+                        setIsLiked(false)
                 })
             }
         })
@@ -36,10 +65,7 @@ function PlacePage(props) {
             setPlace(response.data.place)
             setImage(response.data.place.thumbnail)
         })
-        axios.get(`/api/comment/${params.place}`).then((response) => {
-            setComments(response.data)
-        })
-
+        getComments()
     }, [])
 
     function onHandleComment(e) {
@@ -90,8 +116,8 @@ function PlacePage(props) {
 
                     </div>
                     <div className={styles.bottomInfo}>
-                        <button className={styles.like}>
-                            ❤&nbsp;&nbsp;Place Like
+                        <button className={styles.like} onClick={OnLikeHandler}>
+                            {isLiked?"❤️":"🤍"}&nbsp;Place Like
                         </button>
                         <div className={styles.textBig}>
                             {place.name}
@@ -113,7 +139,10 @@ function PlacePage(props) {
                     <div>
                         {
                             comments.map((comment) => (
-                                <CommentCard comment={comment} user={user} key={comment._id} />
+                                <CommentCard comment={comment} user={user} key={comment._id} 
+                                    deleteComment={()=>{setComments(comments.filter(com => com._id !== comment._id))}} 
+                                    editComment={getComments}
+                                />
                             ))
                         }
                     </div>
