@@ -26,8 +26,14 @@ router.post('/', auth, uploadPlace.array('file'), (req, res) => {
 });
 
 router.get("/", (req, res) => {
-    Place.find({}, function (err, place) {
-        if (err) return res.status(500).send("Place failed");
+    console.log("[search] ", req.query.search)
+    Place.find({
+        $or:[
+            {name: new RegExp(req.query.search)},
+            {description: new RegExp(req.query.search)},
+            {address: new RegExp(req.query.search)}
+        ]
+    }, function (err, place) {
         res.status(200).send({ success: true, place })
     })
 });
