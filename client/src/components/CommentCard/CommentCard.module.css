@@ -1,6 +1,14 @@
+.btnSpan{
+    float: right;
+    margin-right: 15px;
+}
+
 .btn{
     outline: none;
     cursor: pointer;
+    border: 1px solid #805ACB;
+    background-color: white;
+    color: #805ACB;
 }
 
 .commentCard{
@@ -18,7 +26,15 @@
 }
 
 .textContent{
-   word-break: break-all;
+    margin-top: 10px;
+    word-break: break-all;
+}
+
+.editInput{
+    width: 70%;
+    margin-right: 10px;
+    font-size: 15px;
+    padding: 5px 10px;
 }
 
 .hr{
