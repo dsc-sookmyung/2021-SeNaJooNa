@@ -51,7 +51,9 @@ function PlacePage(props) {
                 setUserName(response.payload.name)
                 axios.get(`/api/collections?user=${response.payload._id}`).then((response) => {
                     setCollections(response.data.collection)
-                    setCollectionValue(response.data.collection[0]._id)
+                    if(response.data.collection.length > 0){
+                        setCollectionValue(response.data.collection[0]._id)
+                    }
                 })
                 axios.get(`/api/like/place/${params.place}`).then((response)=>{
                     if(response.data.like)
