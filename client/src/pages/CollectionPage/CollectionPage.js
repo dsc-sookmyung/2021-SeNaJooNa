@@ -76,7 +76,7 @@ function CollectionPage(props) {
                 {places.map((place) => (
                     <PlaceCard collection={props.location.state.collection._id} place={place.placeId} key={place.placeId._id} />
                 ))}
-                {isAuth && collection.creator===user?<a href="/makePlace"><PlaceEmptyCard /></a>: undefined}
+                {isAuth && collection.creator===user?<a href={`/makePlace?collection=${props.location.state.collection._id}`}><PlaceEmptyCard /></a>: undefined}
             </div>
             {/* </div> */}
             {/* <div className={styles.right}>
