@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import CommentCard from '../../components/CommentCard/CommentCard';
+import PlaceForm from '../../components/PlaceCard/PlaceForm';
+import PlaceEmptyCard from '../../components/PlaceCard/PlaceEmptyCard'
 import styles from './FourthPage.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { useDispatch } from 'react-redux'
 import { auth } from '../../actions/user_action'
 import { withRouter } from 'react-router-dom';
@@ -12,6 +17,7 @@ function PlacePage(props) {
     const [isLiked, setIsLiked] = useState(false)
     const [place, setPlace] = useState({})
     const [image, setImage] = useState([])
+    const [newImage, setNewImage] = useState([])
     const [comments, setComments] = useState([])
     const [user, setUser] = useState("")
     const [userName, setUserName] = useState("")
@@ -90,6 +96,43 @@ function PlacePage(props) {
         })
     }
 
+    function deleteImage(deleteSrc){
+        return new Promise((resolve, reject)=>{
+            resolve(image.filter(img => img !== deleteSrc))
+        })
+    }
+
+    function deleteImageHandler(deleteSrc){
+        deleteImage(deleteSrc).then((filtered)=>{
+            setImage(filtered)
+            axios.put(`/api/place/${place._id}`, {existed: filtered}).then((response)=>{
+                if(response.data.success){
+                    setPlace(response.data.place)
+                }
+            })
+        })
+    }
+
+    // New Image
+    function onImageHandler(e){
+        setNewImage(e.currentTarget.files)
+    }
+    function uploadImage(e){
+        e.preventDefault();
+        const formData = new FormData();
+        var len = document.getElementById('image').files.length
+        for(var i=0;i<len;i++){
+            formData.append('file', document.getElementById('image').files[i])
+        }
+        image.map((img)=>{formData.append('thumbnail', img)})
+        axios.put(`/api/place/${place._id}`, formData).then((response)=>{
+            if(response.data.success){
+                setPlace(response.data.place)
+                setImage(response.data.place.thumbnail)
+            }
+        })
+    }
+
     return (
         <div className={styles.fourthPage}>
             <div>
@@ -100,7 +143,7 @@ function PlacePage(props) {
                     &#8250;
                     {place.name}
                 </div>
-                <button className={styles.addTo} onClick={() => openModal(isAuth)}>
+                <button className={styles.addTo} onClick={() => openModal(isAuth, 'tempModal')}>
                     ✔&nbsp;&nbsp;Add to Collection
                 </button>
             </div>
@@ -111,11 +154,26 @@ function PlacePage(props) {
                         {
                             image.map((img, idx) =>
                                 <div className={idx==0? styles.placePhotoThumb:styles.placePhoto} key={img}>
-                                    <img src={img} className={styles.img} />
+                                    <div className={styles.placePhotoImage}>
+                                        {
+                                            (isAuth && place.creator===user)?
+                                            <FontAwesomeIcon 
+                                                icon={faTimesCircle} color="gray" size="lg" 
+                                                className={styles.deleteIcon}
+                                                onClick={()=>deleteImageHandler(img)}
+                                            />
+                                            :undefined
+                                        }
+                                        <img src={img} className={styles.img} />
+                                    </div>
                                 </div>
                             )
                         }
-
+                        {/* Add Image Button */}
+                        <div className={styles.placePhoto}>
+                            <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
+                            <button onClick={uploadImage}>Upload</button>
+                        </div>
                     </div>
                     <div className={styles.bottomInfo}>
                         <button className={styles.like} onClick={OnLikeHandler}>
@@ -123,9 +181,13 @@ function PlacePage(props) {
                         </button>
                         <div className={styles.textBig}>
                             {place.name}
+                            {(isAuth && place.creator===user)?<FontAwesomeIcon icon={faEdit} onClick={()=>{openModal(isAuth, 'editModal')}} />:undefined}
                         </div>
                         <div>
                             {place.address}
+                        </div>
+                        <div>
+                            {place.description}
                         </div>
                         <div>
                             The number of comments : 00
@@ -152,7 +214,7 @@ function PlacePage(props) {
             </div>
             <div id='tempModal' className={styles.tempModal}>
                 <div className={styles.modalContent}>
-                    <span id='close' className={styles.close} onClick={closeModal}>&times;</span>
+                    <span id='close' className={styles.close} onClick={()=>{closeModal('tempModal')}}>&times;</span>
                     <h2>Add Place to Collection</h2>
                     <hr className={styles.hr} />
                     <div className={styles.selectCollectionDiv}>
@@ -167,79 +229,50 @@ function PlacePage(props) {
                     </div>
                     <div className={styles.popupGridContainer}>
                         <div>
-                            <button onClick={openForm} className={styles.popupBtn}>Make new collection</button>
-                        </div>
-                        <div className={styles.popupForm} id='fourthPopupForm'>
-                            <div className={styles.popupContent}>
-                                <span id='close' className={styles.close} onClick={closeForm}>&times;</span>
-                                <h2 className={styles.modalTitle}>새 컬렉션 만들기</h2>
-                                <hr className={styles.hr} />
-                                <div className={styles.formCenter}>
-                                    <div className={styles.formLeft}>
-                                        <label htmlFor='title'>Collection Title</label>
-                                        <input type='text' id='title' placeholder='Enter Title' className={`${styles.input}`}></input>
-                                        <label htmlFor='content'>Collection Content</label>
-                                        <input type='text' id='content' placeholder='Enter Content' className={`${styles.input}`}></input>
-                                        <div className={styles.radioDiv}>
-                                            <label>공개 여부: &nbsp;&nbsp;&nbsp;</label>
-                                            <input type='radio' name='publicPrivate' id='public' value='public' className={styles.radioInput} />
-                                            <label htmlFor='public' className={styles.radioLabel}>공개</label>
-                                            <input type='radio' name='publicPrivate' id='private' value='private' className={styles.radioInput} />
-                                            <label htmlFor='private' className={styles.radioLabel}>비공개</label>
-                                        </div>
-                                    </div>
-                                    <div className={styles.formRight}>
-                                        <div className={styles.selectCategoryDiv}>
-                                            <label htmlFor='selectCategory'>카테고리 종류: &nbsp;&nbsp;&nbsp;</label>
-                                            <select id='selectCategory' className={styles.selectCategory}>
-                                                <option>카테고리</option>
-                                                <option>여행</option>
-                                                <option>맛집</option>
-                                                <option>관광</option>
-                                                <option>휴식</option>
-                                            </select>
-                                        </div>
-                                        <button className={`${styles.takeThumbnailBtn}`}>썸네일 가져오기</button>
-                                        <div className={styles.colorPicker}>
-                                            <label htmlFor='color'>Select the Collection color: &nbsp;&nbsp;&nbsp;</label>
-                                            <input type='color' id='color' />
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr className={styles.hr} />
-                                <button className={`${styles.modalBtn} ${styles.cancelBtn}`}>Cancel</button>
-                                <button className={`${styles.modalBtn} ${styles.makeBtn}`} onClick={closeForm}>Make</button>
-                            </div>
+                            <button onClick={()=>{window.location.href='/makeCollection/_make'}} className={styles.popupBtn}>Make new collection</button>
                         </div>
                     </div>
                     <hr className={styles.hr} />
-                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`} onClick={closeModal}>Cancel</button>
+                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`} onClick={()=>{closeModal('tempModal')}}>Cancel</button>
                     <button className={`${styles.modalBtn} ${styles.makeBtn}`} onClick={submitCollection}>Ok</button>
+                </div>
+            </div >
+            <div id='editModal' className={styles.tempModal}>
+                <div className={styles.modalContent}>
+                    <span id='close' className={styles.close} onClick={()=>{closeModal('editModal')}}>&times;</span>
+                    <div className={styles.formBox}>
+                        <h2>플레이스 수정하기</h2>
+                        <hr className={styles.hr} />
+                        {
+                            place.name&&place.description&&place.address?
+                            <PlaceForm 
+                                place={place}
+                                closeModal={()=>{closeModal('editModal')}} 
+                                submitForm={(editedPlace)=>{setPlace(editedPlace)}} 
+                            />:undefined
+                        }
+                    </div>
+                    
                 </div>
             </div >
         </div >
     )
 }
-function openModal(isAuth) {
+function openModal(isAuth, modal) {
     if (isAuth)
-        document.getElementById('tempModal').style.display = 'block';
+        document.getElementById(modal).style.display = 'block';
     else
         window.location.href = '/login'
 }
-function closeModal() {
-    document.getElementById('tempModal').style.display = 'none';
+function closeModal(modal) {
+    document.getElementById(modal).style.display = 'none';
 }
 window.onclick = function (event) {
-    if (event.target == document.getElementById('tempModal')) {
-        closeModal();
+    if (event.target == document.getElementById('tempModal') || event.target == document.getElementById('editModal')) {
+        closeModal('tempModal');
+        closeModal('editModal');
         // closeForm();
     }
 };
-function openForm() {
-    document.getElementById('fourthPopupForm').style.display = 'block';
-}
-function closeForm() {
-    document.getElementById('fourthPopupForm').style.display = 'none';
-}
 export default withRouter(PlacePage)
 

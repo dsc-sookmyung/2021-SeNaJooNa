@@ -48,10 +48,11 @@ router.get("/:id", (req, res) => {
 });
 
 router.put("/:id", uploadPlace.array('file'), (req, res) => {
-    let place = {};
-
-    place.thumbnail = req.body.existed ? req.body.existed : []
+    let place = {thumbnail:[], ...req.body};
+    if(req.body.existed)
+        place.thumbnail = req.body.existed
     if (req.files !== undefined) {
+        // console.log(req.files)
         req.files.map(img => place.thumbnail.push(img.location))
     }
     console.log(place)
