@@ -16,14 +16,30 @@ function MainPage() {
         })
     }, []);
 
+    cardCount = categories.length;
+    cardLimit = cardCount * -1 + 3;
+
     return (
         <div>
             <div className={`${styles.mainPage} ${styles.part1}`}>
                 <div className={styles.text}>요즘 핫한 그곳! 카테고리별로 살펴볼까요?</div>
-                <div className={styles.categoryCards}>
+                {/* <div className={styles.categoryCards}>
                     {categories.map((category) => (
                         <CategoryCard category={category} key={category._id} categories={categories} />
                     ))}
+                </div> */}
+                <div className={styles.slideBox}>
+                    <span className={styles.slideClick} onClick={moveLeft}>&#8249;</span>
+
+                    <div className={styles.cardBox}>
+                        <div id='translatedCards' className={styles.categoryCards}>
+                            {categories.map((category) => (
+                                <CategoryCard category={category} key={category._id} categories={categories} />
+                            ))}
+                        </div>
+                    </div>
+
+                    <span className={styles.slideClick} onClick={moveRight}>&#8250;</span>
                 </div>
             </div>
             <div className={`${styles.mainPage} ${styles.part2} ${styles.part}`}>
@@ -68,6 +84,29 @@ function MainPage() {
             </div>
         </div >
     )
+}
+
+let cardNum = 0;
+let cardCount;
+let cardLimit;
+
+function moveLeft() {
+    cardNum += 1;
+    if (cardNum > 0)
+        cardNum = 0;
+    moveCard()
+}
+function moveRight() {
+    cardNum -= 1;
+    if (cardNum < cardLimit)
+        cardNum = cardLimit;
+    moveCard();
+}
+function moveCard() {
+    let t = cardNum * 300;
+    let str = 'translate(' + t + 'px)';
+    document.getElementById('translatedCards').style.transform = str;
+    // console.log(cardNum);
 }
 
 export default MainPage
