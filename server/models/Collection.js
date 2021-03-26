@@ -24,6 +24,9 @@ const collectionSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Category'
     },
+    private: {
+        type: Boolean,
+    },
     like: {
         type: Number,
         default: 0
