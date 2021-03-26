@@ -1,35 +1,21 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom';
 import styles from './MakePlacePage.module.css'
+import PlaceForm from '../../components/PlaceCard/PlaceForm'
 
-function MakePlacePage() {
+function MakePlacePage(props) {
     return (
         <div className={styles.container}>
             <div className={styles.makePlacePage}>
-                <div className={styles.formBox}>
-                    <h2>새 플레이스 만들기</h2>
-                    <hr className={styles.hr} />
-                    <form className={styles.form}>
-                        <label for='name'>Place Name</label>
-                        <input type='text' placeholder='Enter Name' className={styles.input}></input>
-
-                        <label for='description'>Place Description</label>
-                        <input type='text' placeholder='Enter Description' className={styles.input}></input>
-
-                        <label for='address'>Place Address</label>
-                        <input type='text' placeholder='Enter Address' className={styles.input}></input>
-
-                        <button className={styles.takeThumbnailBtn}>썸네일 가져오기</button>
-
-                        <hr className={styles.hr} />
-
-                        <button className={`${styles.button} ${styles.cancelBtn}`}>Cancel</button>
-
-                        <button className={`${styles.button} ${styles.makeBtn}`}>Make</button>
-                    </form>
-                </div>
+                <PlaceForm 
+                    edit={false}
+                    place={{name:"", description:"", address:"", thumbnail:""}}
+                    closeModal={()=>{props.history.goBack(1)}} 
+                    submitForm={()=>{props.history.goBack(1)}} 
+                />
             </div>
         </div>
     )
 }
 
-export default MakePlacePage
+export default withRouter(MakePlacePage)

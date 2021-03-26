@@ -170,10 +170,14 @@ function PlacePage(props) {
                             )
                         }
                         {/* Add Image Button */}
-                        <div className={styles.placePhoto}>
-                            <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
-                            <button onClick={uploadImage}>Upload</button>
-                        </div>
+                        {
+                            (isAuth && place.creator===user)?
+                            <div className={styles.placePhoto}>
+                                <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
+                                <button onClick={uploadImage}>Upload</button>
+                            </div>
+                            :undefined
+                        }
                     </div>
                     <div className={styles.bottomInfo}>
                         <button className={styles.like} onClick={OnLikeHandler}>
@@ -240,19 +244,15 @@ function PlacePage(props) {
             <div id='editModal' className={styles.tempModal}>
                 <div className={styles.modalContent}>
                     <span id='close' className={styles.close} onClick={()=>{closeModal('editModal')}}>&times;</span>
-                    <div className={styles.formBox}>
-                        <h2>플레이스 수정하기</h2>
-                        <hr className={styles.hr} />
-                        {
-                            place.name&&place.description&&place.address?
-                            <PlaceForm 
-                                place={place}
-                                closeModal={()=>{closeModal('editModal')}} 
-                                submitForm={(editedPlace)=>{setPlace(editedPlace)}} 
-                            />:undefined
-                        }
-                    </div>
-                    
+                    {
+                        place.name&&place.description&&place.address?
+                        <PlaceForm 
+                            edit={true}
+                            place={place}
+                            closeModal={()=>{closeModal('editModal')}} 
+                            submitForm={(editedPlace)=>{setPlace(editedPlace)}} 
+                        />:undefined
+                    }
                 </div>
             </div >
         </div >

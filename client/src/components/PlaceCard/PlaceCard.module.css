@@ -73,3 +73,35 @@
     display: inline-block;
     box-sizing: border-box;
 }
+.formBox{
+    flex: 1;
+    padding: 20px;
+    border: 3px solid #805ACB;
+    background-color: white;
+}
+
+.hr{
+    border: 1px solid #f1f1f1;
+    margin: 25px 0px;
+}
+
+.button{
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    font-size: 17px;
+}
+.button:hover{
+    opacity: 1;
+}
+.cancelBtn{
+    background-color: #f44336;
+}
+.makeBtn{
+    background-color: #4caf50;
+}
