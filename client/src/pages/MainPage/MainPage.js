@@ -16,6 +16,9 @@ function MainPage() {
         })
     }, []);
 
+    cardCount = categories.length;
+    cardLimit = cardCount * -1 + 3;
+
     return (
         <div>
             <div className={`${styles.mainPage} ${styles.part1}`}>
@@ -84,6 +87,8 @@ function MainPage() {
 }
 
 let cardNum = 0;
+let cardCount;
+let cardLimit;
 
 function moveLeft() {
     cardNum += 1;
@@ -93,12 +98,15 @@ function moveLeft() {
 }
 function moveRight() {
     cardNum -= 1;
+    if (cardNum < cardLimit)
+        cardNum = cardLimit;
     moveCard();
 }
 function moveCard() {
     let t = cardNum * 300;
     let str = 'translate(' + t + 'px)';
     document.getElementById('translatedCards').style.transform = str;
+    // console.log(cardNum);
 }
 
 export default MainPage
