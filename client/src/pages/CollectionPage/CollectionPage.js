@@ -4,26 +4,29 @@ import axios from 'axios'
 import styles from './ThirdPage.module.css';
 
 import PlaceCard from '../../components/PlaceCard/PlaceCard';
+import PlaceEmptyCard from '../../components/PlaceCard/PlaceEmptyCard'
 import { withRouter } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { auth } from '../../actions/user_action';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux'
+import { auth } from '../../actions/user_action'
 import Favorite from './Favorite';
-function CollectionPage(props) {
 
+function CollectionPage(props) {
     const [places, setPlaces] = useState([])
     const [collection, setCollection] = useState({});
-    const [userId, setUserId] = useState("")
+    const [isAuth, setIsAuth] = useState(false)
+    const [user, setUser] = useState("")
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(auth()).then(response => {
             if (response.payload.isAuth) {
-                setUserId(response.payload._id)
+                setIsAuth(true)
+                setUser(response.payload._id)
             }
         })
     }, [])
-
     useEffect(() => {
         axios.get(`/api/places/${props.location.state.collection._id}`).then((response) => {
             setPlaces(response.data)
@@ -58,7 +61,7 @@ function CollectionPage(props) {
                 <div>
                     {collection.content}
                 </div>
-                {(userId == collection.creator) ?
+                {(isAuth && user == collection.creator) ?
                     <div>
                         <button onClick={onDeleteHandler} className={styles.like}>삭제</button>
                         <button onClick={onUpdateHandler} className={styles.like}>수정</button>
@@ -70,7 +73,7 @@ function CollectionPage(props) {
                 {places.map((place) => (
                     <PlaceCard collection={props.location.state.collection._id} place={place.placeId} key={place.placeId._id} />
                 ))}
-
+                {isAuth && collection.creator===user?<a href="/makePlace"><PlaceEmptyCard /></a>: undefined}
             </div>
             {/* </div> */}
             {/* <div className={styles.right}>

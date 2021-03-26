@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { Place } = require("../models/Place");
 const { auth } = require("../middleware/auth");
-const { upload } = require('../middleware/upload');
+const { uploadPlace } = require('../middleware/uploadPlace');
 
 
-router.post('/', auth, upload.array('file'), (req, res) => {
+router.post('/', auth, uploadPlace.array('file'), (req, res) => {
 
     let place = new Place(req.body);
     if (req.files !== undefined) {
@@ -26,8 +26,14 @@ router.post('/', auth, upload.array('file'), (req, res) => {
 });
 
 router.get("/", (req, res) => {
-    Place.find({}, function (err, place) {
-        if (err) return res.status(500).send("Place failed");
+    console.log("[search] ", req.query.search)
+    Place.find({
+        $or:[
+            {name: new RegExp(req.query.search, 'i')},
+            {description: new RegExp(req.query.search, 'i')},
+            {address: new RegExp(req.query.search, 'i')}
+        ]
+    }, function (err, place) {
         res.status(200).send({ success: true, place })
     })
 });
@@ -41,11 +47,12 @@ router.get("/:id", (req, res) => {
         });
 });
 
-router.put("/:id", upload.array('file'), (req, res) => {
-    let place = {};
-
-    place.thumbnail = req.body.existed ? req.body.existed : []
+router.put("/:id", uploadPlace.array('file'), (req, res) => {
+    let place = {thumbnail:[], ...req.body};
+    if(req.body.existed)
+        place.thumbnail = req.body.existed
     if (req.files !== undefined) {
+        // console.log(req.files)
         req.files.map(img => place.thumbnail.push(img.location))
     }
     console.log(place)

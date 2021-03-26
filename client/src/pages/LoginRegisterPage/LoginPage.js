@@ -30,7 +30,7 @@ function LoginPage(props) {
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.loginSuccess) {
-                    props.history.push('/')
+                    props.history.goBack(1)
                 }
                 else {
                     alert('Error');
