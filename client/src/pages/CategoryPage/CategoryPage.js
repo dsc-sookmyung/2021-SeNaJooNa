@@ -20,12 +20,17 @@ function CategoryPage(props) {
 
     useEffect(() => {
         axios.get(`/api/collections/?categoryId=${props.location.state.categoryId}`).then((response) => {
-            setCollections(response.data.collection)
+            const collectionList = response.data.collection.filter((collection) => collection.private === false);
+            setCollections(collectionList);
         })
+
         Promise.all(props.location.state.recommend.map(getRecommend)).then((result) => {
             setRecommend(result);
         })
     }, []);
+
+    // const collectionList = collections.filter((collection) => collection.private === false)
+
     return (
         <div>
             <div className={styles.part1}>

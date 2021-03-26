@@ -16,6 +16,8 @@ function MakeCollectionPage(props) {
     const [color, setColor] = useState("");
     const [id, setId] = useState(props.match.params.id);
     const [collections, setCollection] = useState({});
+    const [privateCollection, setPrivateCollection] = useState(false);
+
     useEffect(() => {
         axios.get('/api/category').then((response) => {
             setCategories(response.data)
@@ -28,6 +30,7 @@ function MakeCollectionPage(props) {
                 setTitle(response.data.collection.title);
                 setContent(response.data.collection.content);
                 setCategory(response.data.collection.categoryId);
+                setPrivateCollection(response.data.collection.private);
             })
         }
     }, [])
@@ -52,6 +55,15 @@ function MakeCollectionPage(props) {
         setColor(event.target.value);
     }
 
+    const onPublicPrivateHandler = (event) => {
+        if (event.target.value === 'private') {
+            setPrivateCollection(true);
+        }
+        else {
+            setPrivateCollection(false);
+        }
+    }
+
     const onSubmitHandler = (event) => {
         event.preventDefault();
 
@@ -64,6 +76,7 @@ function MakeCollectionPage(props) {
         formData.append('content', content)
         formData.append('categoryId', category)
         formData.append('creator', user.userData._id)
+        formData.append('private', privateCollection)
 
         if (id === "_make") {
             formData.append('file', image);
@@ -128,10 +141,10 @@ function MakeCollectionPage(props) {
 
                         <div className={styles.radioDiv}>
                             <text>공개 여부: &nbsp;&nbsp;&nbsp;</text>
-                            <input type='radio' name='publicPrivate' id='public' value='public' className={styles.radioInput} />
+                            <input type='radio' onChange={onPublicPrivateHandler} checked={privateCollection === false} name='publicPrivate' id='public' value='public' className={styles.radioInput} />
                             <label for='public' className={styles.radioLabel}>공개</label>
 
-                            <input type='radio' name='publicPrivate' id='private' value='private' className={styles.radioInput} />
+                            <input type='radio' onChange={onPublicPrivateHandler} checked={privateCollection === true} name='publicPrivate' id='private' value='private' className={styles.radioInput} />
                             <label for='private' className={styles.radioLabel}>비공개</label>
                         </div>
 

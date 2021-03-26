@@ -9,7 +9,7 @@ router.get('/', auth, (req, res) => {
     .populate('collectionId')
     .exec((err, doc) => {
       if (err) return res.json({ success: false, err });
-      console.log(doc);
+      // console.log(doc);
       return res.status(200).send(doc);
     });
 });

@@ -23,9 +23,9 @@ router.post('/', upload.single('file'), (req, res) => {
 
 });
 
-router.get("/", auth, (req, res) => {
+router.get("/", (req, res) => {
     if (req.query.user) {
-        Collection.find({ 'creator': req.user._id })
+        Collection.find({ 'creator': req.query.user })
             .exec((err, collection) => {
                 if (err) return res.status(500).send("Collection Loading failed");
                 if (!collection) return res.status(404).send("No Collection");

@@ -9,30 +9,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../../actions/user_action';
 
 function MyPage(props) {
-  const user = useSelector((state) => state.user);
+
   const [collections, setCollections] = useState([]);
   const [likeCollections, setLikeCollections] = useState([]);
-  const [userId, setUserId] = useState('');
-  const [cs, setC] = useState([]);
+  const [isAuth, setIsAuth] = useState(false)
+  const [user, setUser] = useState("")
+
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    await dispatch(auth()).then((response) => {
+  useEffect(() => {
+    dispatch(auth()).then(response => {
       if (response.payload.isAuth) {
-        setUserId(response.payload._id);
+        setIsAuth(true)
+        setUser(response.payload._id)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   useEffect(() => {
-    axios.get(`/api/collections?user=true`).then((response) => {
-      setCollections(response.data.collection);
-    });
-  }, []);
+    if (user !== "") {
+      axios.get(`/api/collections?user=${user}`).then((response) => {
+        setCollections(response.data.collection);
+      });
+    }
+  }, [user]);
 
-  useEffect(async () => {
-    console.log(userId);
-    await axios.get(`/api/likeCollections/`).then((response) => {
+  useEffect(() => {
+    axios.get(`/api/likeCollections/`).then((response) => {
       setLikeCollections(response.data);
     });
   }, []);
