@@ -66,7 +66,7 @@ function CollectionPage(props) {
                         <button onClick={onDeleteHandler} className={styles.like}>삭제</button>
                         <button onClick={onUpdateHandler} className={styles.like}>수정</button>
                     </div> :
-                    <Favorite collection={collection} collectionId={collection._id} userId={userId}/>
+                    <Favorite collection={collection} collectionId={collection._id} userId={user}/>
                 }
             </div>
             <div className={styles.gridContainer}>
