@@ -9,6 +9,7 @@ import { withRouter } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
 import { auth } from '../../actions/user_action'
+import Favorite from './Favorite';
 
 function CollectionPage(props) {
     const [places, setPlaces] = useState([])
@@ -29,16 +30,12 @@ function CollectionPage(props) {
     useEffect(() => {
         axios.get(`/api/places/${props.location.state.collection._id}`).then((response) => {
             setPlaces(response.data)
-            console.log(response.data)
         })
-    }, []);
 
-    useEffect(() => {
         axios.get(`/api/collections/${props.location.state.collection._id}`).then((response) => {
             setCollection(response.data.collection)
-            console.log(response.data.collection);
         })
-    }, [])
+    }, []);
 
     const onDeleteHandler = () => {
         if (window.confirm("정말 삭제하시겠습니까?")) {
@@ -69,7 +66,7 @@ function CollectionPage(props) {
                         <button onClick={onDeleteHandler} className={styles.like}>삭제</button>
                         <button onClick={onUpdateHandler} className={styles.like}>수정</button>
                     </div> :
-                    <button className={styles.like}>❤ Collection Like</button>
+                    <Favorite collection={collection} collectionId={collection._id} userId={userId}/>
                 }
             </div>
             <div className={styles.gridContainer}>
