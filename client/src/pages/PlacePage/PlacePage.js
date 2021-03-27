@@ -26,25 +26,25 @@ function PlacePage(props) {
     const [collectionValue, setCollectionValue] = useState("")
     const params = queryString.parse(props.location.search);
 
-    function getComments(){
+    function getComments() {
         axios.get(`/api/comment/${params.place}`).then((response) => {
             setComments(response.data)
         })
     }
 
-    function OnLikeHandler(){
-        if(isAuth){
-            if(!isLiked){
-                axios.post(`/api/like/place`,{placeId:params.place}).then((response)=>{
+    function OnLikeHandler() {
+        if (isAuth) {
+            if (!isLiked) {
+                axios.post(`/api/like/place`, { placeId: params.place }).then((response) => {
                     setIsLiked(true)
                 })
             } else {
-                axios.delete(`/api/like/place/${params.place}`).then((response)=>{
+                axios.delete(`/api/like/place/${params.place}`).then((response) => {
                     setIsLiked(false)
                 })
             }
         } else {
-            window.location.href="/login"
+            window.location.href = "/login"
         }
     }
 
@@ -57,12 +57,12 @@ function PlacePage(props) {
                 setUserName(response.payload.name)
                 axios.get(`/api/collections?user=${response.payload._id}`).then((response) => {
                     setCollections(response.data.collection)
-                    if(response.data.collection.length > 0){
+                    if (response.data.collection.length > 0) {
                         setCollectionValue(response.data.collection[0]._id)
                     }
                 })
-                axios.get(`/api/like/place/${params.place}`).then((response)=>{
-                    if(response.data.like)
+                axios.get(`/api/like/place/${params.place}`).then((response) => {
+                    if (response.data.like)
                         setIsLiked(true)
                     else
                         setIsLiked(false)
@@ -96,17 +96,17 @@ function PlacePage(props) {
         })
     }
 
-    function deleteImage(deleteSrc){
-        return new Promise((resolve, reject)=>{
+    function deleteImage(deleteSrc) {
+        return new Promise((resolve, reject) => {
             resolve(image.filter(img => img !== deleteSrc))
         })
     }
 
-    function deleteImageHandler(deleteSrc){
-        deleteImage(deleteSrc).then((filtered)=>{
+    function deleteImageHandler(deleteSrc) {
+        deleteImage(deleteSrc).then((filtered) => {
             setImage(filtered)
-            axios.put(`/api/place/${place._id}`, {existed: filtered}).then((response)=>{
-                if(response.data.success){
+            axios.put(`/api/place/${place._id}`, { existed: filtered }).then((response) => {
+                if (response.data.success) {
                     setPlace(response.data.place)
                 }
             })
@@ -114,19 +114,19 @@ function PlacePage(props) {
     }
 
     // New Image
-    function onImageHandler(e){
+    function onImageHandler(e) {
         setNewImage(e.currentTarget.files)
     }
-    function uploadImage(e){
+    function uploadImage(e) {
         e.preventDefault();
         const formData = new FormData();
         var len = document.getElementById('image').files.length
-        for(var i=0;i<len;i++){
+        for (var i = 0; i < len; i++) {
             formData.append('file', document.getElementById('image').files[i])
         }
-        image.map((img)=>{formData.append('thumbnail', img)})
-        axios.put(`/api/place/${place._id}`, formData).then((response)=>{
-            if(response.data.success){
+        image.map((img) => { formData.append('thumbnail', img) })
+        axios.put(`/api/place/${place._id}`, formData).then((response) => {
+            if (response.data.success) {
                 setPlace(response.data.place)
                 setImage(response.data.place.thumbnail)
             }
@@ -153,16 +153,16 @@ function PlacePage(props) {
                     <div className={styles.topPhoto}>
                         {
                             image.map((img, idx) =>
-                                <div className={idx==0? styles.placePhotoThumb:styles.placePhoto} key={img}>
+                                <div className={idx == 0 ? styles.placePhotoThumb : styles.placePhoto} key={img}>
                                     <div className={styles.placePhotoImage}>
                                         {
-                                            (isAuth && place.creator===user)?
-                                            <FontAwesomeIcon 
-                                                icon={faTimesCircle} color="gray" size="lg" 
-                                                className={styles.deleteIcon}
-                                                onClick={()=>deleteImageHandler(img)}
-                                            />
-                                            :undefined
+                                            (isAuth && place.creator === user) ?
+                                                <FontAwesomeIcon
+                                                    icon={faTimesCircle} color="gray" size="lg"
+                                                    className={styles.deleteIcon}
+                                                    onClick={() => deleteImageHandler(img)}
+                                                />
+                                                : undefined
                                         }
                                         <img src={img} className={styles.img} />
                                     </div>
@@ -171,21 +171,21 @@ function PlacePage(props) {
                         }
                         {/* Add Image Button */}
                         {
-                            (isAuth && place.creator===user)?
-                            <div className={styles.placePhoto}>
-                                <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
-                                <button onClick={uploadImage}>Upload</button>
-                            </div>
-                            :undefined
+                            (isAuth && place.creator === user) ?
+                                <div className={styles.placePhoto}>
+                                    <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
+                                    <button onClick={uploadImage} className={styles.imageBtn}>Upload</button>
+                                </div>
+                                : undefined
                         }
                     </div>
                     <div className={styles.bottomInfo}>
                         <button className={styles.like} onClick={OnLikeHandler}>
-                            {isLiked?"❤️":"🤍"}&nbsp;Place Like
+                            {isLiked ? "❤️" : "🤍"}&nbsp;Place Like
                         </button>
                         <div className={styles.textBig}>
-                            {place.name}
-                            {(isAuth && place.creator===user)?<FontAwesomeIcon icon={faEdit} onClick={()=>{openModal(isAuth, 'editModal')}} />:undefined}
+                            {place.name}&nbsp;
+                            {(isAuth && place.creator === user) ? <FontAwesomeIcon icon={faEdit} onClick={() => { openModal(isAuth, 'editModal') }} /> : undefined}
                         </div>
                         <div>
                             {place.address}
@@ -207,8 +207,8 @@ function PlacePage(props) {
                     <div>
                         {
                             comments.map((comment) => (
-                                <CommentCard comment={comment} user={user} key={comment._id} 
-                                    deleteComment={()=>{setComments(comments.filter(com => com._id !== comment._id))}} 
+                                <CommentCard comment={comment} user={user} key={comment._id}
+                                    deleteComment={() => { setComments(comments.filter(com => com._id !== comment._id)) }}
                                     editComment={getComments}
                                 />
                             ))
@@ -218,7 +218,7 @@ function PlacePage(props) {
             </div>
             <div id='tempModal' className={styles.tempModal}>
                 <div className={styles.modalContent}>
-                    <span id='close' className={styles.close} onClick={()=>{closeModal('tempModal')}}>&times;</span>
+                    <span id='close' className={styles.close} onClick={() => { closeModal('tempModal') }}>&times;</span>
                     <h2>Add Place to Collection</h2>
                     <hr className={styles.hr} />
                     <div className={styles.selectCollectionDiv}>
@@ -233,46 +233,49 @@ function PlacePage(props) {
                     </div>
                     <div className={styles.popupGridContainer}>
                         <div>
-                            <button onClick={()=>{window.location.href='/makeCollection/_make'}} className={styles.popupBtn}>Make new collection</button>
+                            <button onClick={() => { window.location.href = '/makeCollection/_make' }} className={styles.popupBtn}>Make new collection</button>
                         </div>
                     </div>
                     <hr className={styles.hr} />
-                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`} onClick={()=>{closeModal('tempModal')}}>Cancel</button>
-                    <button className={`${styles.modalBtn} ${styles.makeBtn}`} onClick={submitCollection}>Ok</button>
+                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`} onClick={() => { closeModal('tempModal') }}>Cancel</button>
+                    <button className={`${styles.modalBtn} ${styles.makeBtn}`} onClick={submitCollection}>Ok</button>
                 </div>
             </div >
             <div id='editModal' className={styles.tempModal}>
                 <div className={styles.modalContent}>
-                    <span id='close' className={styles.close} onClick={()=>{closeModal('editModal')}}>&times;</span>
+                    <span id='close' className={styles.close} onClick={() => { closeModal('editModal') }}>&times;</span>
                     {
-                        place.name&&place.description&&place.address?
-                        <PlaceForm 
-                            edit={true}
-                            place={place}
-                            closeModal={()=>{closeModal('editModal')}} 
-                            submitForm={(editedPlace)=>{setPlace(editedPlace)}} 
-                        />:undefined
+                        place.name && place.description && place.address ?
+                            <PlaceForm
+                                edit={true}
+                                place={place}
+                                closeModal={() => { closeModal('editModal') }}
+                                submitForm={(editedPlace) => { setPlace(editedPlace) }}
+                            /> : undefined
                     }
                 </div>
             </div >
         </div >
     )
 }
+
 function openModal(isAuth, modal) {
     if (isAuth)
         document.getElementById(modal).style.display = 'block';
     else
         window.location.href = '/login'
 }
+
 function closeModal(modal) {
     document.getElementById(modal).style.display = 'none';
 }
+
 window.onclick = function (event) {
     if (event.target == document.getElementById('tempModal') || event.target == document.getElementById('editModal')) {
         closeModal('tempModal');
         closeModal('editModal');
-        // closeForm();
     }
 };
+
 export default withRouter(PlacePage)
 
