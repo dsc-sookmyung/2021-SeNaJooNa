@@ -13,19 +13,24 @@ function SearchPage(props) {
     const params = queryString.parse(props.location.search);
 
     useEffect(() => {
-        if(params.type === "collection"){
+        if (params.type === "collection") {
             console.log(params)
-        } else {
+            axios.get(`/api/collections?search=${params.query}`)
+                .then((response) => {
+                    setCards(response.data.collection)
+                })
+        }
+        else {
             axios.get(`/api/place?search=${params.query}`)
-            .then((response)=>{
-                setCards(response.data.place)
-            })
+                .then((response) => {
+                    setCards(response.data.place)
+                })
         }
     }, [])
 
-    function addCards(card){
-        if(params.type === "collection"){
-
+    function addCards(card) {
+        if (params.type === "collection") {
+            return <CollectionCard collection={card} key={card._id} />
         } else {
             return <PlaceCard collection={undefined} place={card} key={card._id} />
         }
