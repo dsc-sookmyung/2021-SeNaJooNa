@@ -32,6 +32,16 @@ router.get("/", (req, res) => {
                 res.status(200).send({ success: true, collection });
             })
     }
+    else if (req.query.search) {
+        Collection.find({
+            $or: [
+                { title: new RegExp(req.query.search, 'i') },
+                { content: new RegExp(req.query.search, 'i') }
+            ]
+        }, function (err, collection) {
+            res.status(200).send({ success: true, collection })
+        })
+    }
     else if (req.query.categoryId) {
         Collection.find({ 'categoryId': req.query.categoryId })
             .exec((err, collection) => {
