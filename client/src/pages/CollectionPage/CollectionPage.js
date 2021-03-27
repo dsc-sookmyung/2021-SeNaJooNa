@@ -3,18 +3,14 @@ import axios from 'axios'
 
 import styles from './ThirdPage.module.css';
 
-import PlaceCard from '../../components/PlaceCard/PlaceCard';
-import PlaceEmptyCard from '../../components/PlaceCard/PlaceEmptyCard'
 import { withRouter } from 'react-router';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
 import { auth } from '../../actions/user_action'
 import Favorite from './Favorite';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+
+import PlaceCardsDiv from '../../components/PlaceCard/PlaceCardsDiv'
 
 function CollectionPage(props) {
-    const [places, setPlaces] = useState([])
     const [collection, setCollection] = useState({});
     const [isAuth, setIsAuth] = useState(false)
     const [user, setUser] = useState("")
@@ -30,10 +26,6 @@ function CollectionPage(props) {
         })
     }, [])
     useEffect(() => {
-        axios.get(`/api/places/${props.location.state.collection._id}`).then((response) => {
-            setPlaces(response.data)
-        })
-
         axios.get(`/api/collections/${props.location.state.collection._id}`).then((response) => {
             setCollection(response.data.collection)
         })
@@ -51,18 +43,6 @@ function CollectionPage(props) {
 
     const onUpdateHandler = () => {
         props.history.push(`makeCollection/${props.location.state.collection._id}`)
-    }
-
-    function deletePlace(creator, placeId, collectionId){
-        if(user === creator){
-            axios.delete(`/api/places/creator/${placeId}/${collectionId}`).then((response)=>{
-                setPlaces(places.filter(place => place.placeId._id !== response.data.place._id))
-            })
-        } else {
-            axios.delete(`/api/places/${placeId}/${collectionId}`).then((response)=>{
-                setPlaces(places.filter(place => place._id !== response.data.place._id))
-            })
-        }
     }
 
     return (
@@ -83,19 +63,7 @@ function CollectionPage(props) {
                     <Favorite collection={collection} collectionId={collection._id} userId={user}/>
                 }
             </div>
-            <div className={styles.gridContainer}>
-                {places.map((place) => (
-                    <div className={styles.cardContainer}>
-                        {(isAuth && collection.creator===user)?
-                        <FontAwesomeIcon 
-                            icon={faTimesCircle} color="gray" size="lg" 
-                            className={styles.deleteIcon}
-                            onClick={()=>{deletePlace(place.placeId.creator,place.placeId._id,collection._id)}}/>:undefined}
-                    <PlaceCard collection={props.location.state.collection._id} place={place.placeId} key={place.placeId._id} />
-                    </div>
-                ))}
-                {isAuth && collection.creator===user?<a href={`/makePlace?collection=${props.location.state.collection._id}`}><PlaceEmptyCard /></a>: undefined}
-            </div>
+            <PlaceCardsDiv isAuth={isAuth} user={user} collection={props.location.state.collection} />
             {/* </div> */}
             {/* <div className={styles.right}>
                 지도

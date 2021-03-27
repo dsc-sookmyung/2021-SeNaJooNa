@@ -10,7 +10,7 @@ function PlaceCard(props) {
     const [image, setImage] = useState("")
     const [isAuth, setIsAuth] = useState(false)
     const [like, setLike] = useState(props.place.like_count)
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLiked, setIsLiked] = useState(props.isLiked?true:false)
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -22,14 +22,17 @@ function PlaceCard(props) {
         dispatch(auth()).then(response => {
             if (response.payload.isAuth) {
                 setIsAuth(true)
-                axios.get(`/api/like/place/${props.place._id}`).then((response) => {
-                    if (response.data.like)
-                        setIsLiked(true)
-                    else
-                        setIsLiked(false)
-                })
+                if(props.query){
+                    axios.get(`/api/like/place/${props.place._id}`).then((response) => {
+                        if (response.data.like)
+                            setIsLiked(true)
+                        else
+                            setIsLiked(false)
+                    })
+                }
             }
         })
+        
     }, [])
     function OnLikeHandler() {
         if (isAuth) {
