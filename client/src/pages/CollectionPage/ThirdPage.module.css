@@ -37,3 +37,16 @@
     padding: 10px;
     background-color: darkkhaki;
 } */
+
+
+.cardContainer {
+    display: flex;
+    position: relative;
+}
+.deleteIcon {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    z-index: 1;
+    color: white;
+}

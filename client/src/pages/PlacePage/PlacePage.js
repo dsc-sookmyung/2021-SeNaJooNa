@@ -92,7 +92,7 @@ function PlacePage(props) {
     function submitCollection() {
         axios.post(`/api/places`, { placeId: params.place, collectionId: collectionValue }).then((response) => {
             setCollectionValue("")
-            closeModal()
+            closeModal("tempModal")
         })
     }
 
