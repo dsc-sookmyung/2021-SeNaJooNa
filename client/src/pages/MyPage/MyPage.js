@@ -12,6 +12,7 @@ function MyPage(props) {
 
   const [collections, setCollections] = useState([]);
   const [likeCollections, setLikeCollections] = useState([]);
+  const [likePlaces, setLikePlaces] = useState([]);
   const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState("")
 
@@ -35,8 +36,16 @@ function MyPage(props) {
   }, [user]);
 
   useEffect(() => {
+    console.log("안녕");
     axios.get(`/api/likeCollections/`).then((response) => {
       setLikeCollections(response.data);
+      console.log(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get(`/api/like/place`).then((response) => {
+      setLikePlaces(response.data);
     });
   }, []);
 
@@ -69,6 +78,14 @@ function MyPage(props) {
       <div className={styles.part3}>
         <div className={styles.text}>Place I like</div>
         <div className={`${styles.gridContainer} ${styles.gridPlace}`}>
+          {likePlaces.map((like) => {
+            return (
+              <PlaceCard
+                place={like.placeId}
+                key={like.placeId._id}
+              />
+            );
+          })}
           {/* <PlaceCard />
                     <PlaceCard /><PlaceCard /><PlaceCard /><PlaceCard /><PlaceCard /> */}
         </div>
