@@ -32,7 +32,7 @@ function SearchPage(props) {
         if (params.type === "collection") {
             return <CollectionCard collection={card} key={card._id} />
         } else {
-            return <PlaceCard collection={undefined} place={card} key={card._id} />
+            return <PlaceCard collection={undefined} place={card} key={card._id} query={true} />
         }
     }
 

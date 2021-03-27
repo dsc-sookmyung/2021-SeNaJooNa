@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import CollectionCard from '../../components/CollectionCard/CollectionCard';
 import MakeCollectionCard from '../../components/CollectionCard/CollectionEmptyCard';
-import PlaceCard from '../../components/PlaceCard/PlaceCard';
+import PlaceCardsDiv from '../../components/PlaceCard/PlaceCardsDiv'
+
 import { Link, withRouter } from 'react-router-dom';
 import styles from './MyPage.module.css';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { auth } from '../../actions/user_action';
 
 function MyPage(props) {
 
   const [collections, setCollections] = useState([]);
   const [likeCollections, setLikeCollections] = useState([]);
-  const [likePlaces, setLikePlaces] = useState([]);
   const [isAuth, setIsAuth] = useState(false)
   const [user, setUser] = useState("")
 
@@ -40,12 +40,6 @@ function MyPage(props) {
     axios.get(`/api/likeCollections/`).then((response) => {
       setLikeCollections(response.data);
       console.log(response.data);
-    });
-  }, []);
-
-  useEffect(() => {
-    axios.get(`/api/like/place`).then((response) => {
-      setLikePlaces(response.data);
     });
   }, []);
 
@@ -77,18 +71,7 @@ function MyPage(props) {
       </div>
       <div className={styles.part3}>
         <div className={styles.text}>Place I like</div>
-        <div className={`${styles.gridContainer} ${styles.gridPlace}`}>
-          {likePlaces.map((like) => {
-            return (
-              <PlaceCard
-                place={like.placeId}
-                key={like.placeId._id}
-              />
-            );
-          })}
-          {/* <PlaceCard />
-                    <PlaceCard /><PlaceCard /><PlaceCard /><PlaceCard /><PlaceCard /> */}
-        </div>
+        <PlaceCardsDiv isAuth={isAuth} user={user} collection={undefined} isLiked={true}/>
       </div>
     </div>
   );
