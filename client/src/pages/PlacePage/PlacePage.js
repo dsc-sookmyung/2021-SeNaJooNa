@@ -114,8 +114,13 @@ function PlacePage(props) {
     }
 
     // New Image
-    function onImageHandler(e){
-        setNewImage(e.currentTarget.files)
+    async function onImageHandler(e){
+        e.preventDefault();
+        var images = []
+        for (var i = 0; i < e.target.files.length; i++) {
+            images.push(URL.createObjectURL(e.target.files[i]))
+        }
+        setNewImage(images)
     }
     function uploadImage(e){
         e.preventDefault();
@@ -170,13 +175,21 @@ function PlacePage(props) {
                             )
                         }
                         {/* Add Image Button */}
+                        
+                        
+                    </div>
+                    {
+                        (isAuth && place.creator===user) &&
+                        <div className={styles.placePhoto}>
+                            <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
+                            <button onClick={uploadImage}>Upload</button>
+                        </div>
+                    }
+                    <div className={styles.topPhoto}>
                         {
-                            (isAuth && place.creator===user)?
-                            <div className={styles.placePhoto}>
-                                <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
-                                <button onClick={uploadImage}>Upload</button>
-                            </div>
-                            :undefined
+                            newImage.length > 0 && newImage.map((img)=><img src={img} className={styles.img} key={img} />)
+                            // newImage.length > 0 && <img src={newImage[0]} className={styles.img}/>
+                            
                         }
                     </div>
                     <div className={styles.bottomInfo}>
