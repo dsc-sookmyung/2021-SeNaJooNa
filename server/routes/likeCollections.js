@@ -4,21 +4,23 @@ const { CollectionLike } = require('../models/CollectionLike');
 const { Collection } = require('../models/Collection');
 const { auth } = require('../middleware/auth');
 //로그인한 사람이 좋아요를 누른 목록
+
 router.get('/', auth, (req, res) => {
+  console.log(req.user._id);
   CollectionLike.find({ userId: req.user._id })
     .populate('collectionId')
     .exec((err, doc) => {
       if (err) return res.json({ success: false, err });
-      // console.log(doc);
+      console.log(doc);
       return res.status(200).send(doc);
     });
 });
 
 //해당 콜렉션 좋아요를 눌렀는지
-router.get('/:userId/:collectionId', (req, res) => {
+router.get('/:collectionId', auth, (req, res) => {
   // console.log(req.body);
   CollectionLike.findOne(
-    { userId: req.params.userId, collectionId: req.params.collectionId },
+    { userId: req.user._id, collectionId: req.params.collectionId },
     function (err, doc) {
       if (err) return res.status(500).send({ success: false, err });
       else if (!doc)
@@ -29,7 +31,8 @@ router.get('/:userId/:collectionId', (req, res) => {
 });
 
 //좋아요 하기
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
+  req.body.userId = req.user._id
   const collectionLike = new CollectionLike(req.body);
   console.log(collectionLike);
   collectionLike.save((err, like) => {

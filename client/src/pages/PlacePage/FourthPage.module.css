@@ -76,6 +76,15 @@
     width: 100%;
     height: 100%;
 }
+.imageBtn{
+    width: 70px;
+    border: 1.5px solid #805ACB;
+    outline: none;
+    background-color: white;
+    color: #805ACB;
+    padding: 5px 3px;
+    font-size: 15px;
+}
 
 .bottomInfo{
     background-color: #f1f1f1;
@@ -168,78 +177,6 @@
     color: white;
     font-size: 17px;
     height: 50px;
-}
-
-.popupForm{
-    background-color: lavenderblush;
-    display: none;
-}
-
-popupContent{
-    background-color: #fefefe;
-    width: 100%;
-    padding: 30px;
-    border: 1px solid #888;
-}
-
-.formCenter{
-    display: flex;
-    padding: 30px;
-}
-.formLeft{
-    flex: 50%;
-    padding-right: 50px;
-    border-right: 2px solid #f1f1f1;
-}
-.formRight{
-    flex: 50%;
-    padding-left: 50px;
-}
-
-.input{
-    padding: 12px 20px;
-    margin: 20px 0px;
-    width: 100%;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.radioDiv{
-    font-size: 17px;
-    margin: 20px 0px 10px;
-}
-.radioLabel{
-    cursor: pointer;
-    margin-right: 15px;
-}
-.radioInput{
-    cursor: pointer;
-}
-
-.selectCategoryDiv{
-    margin: 50px 0px 25px;
-    font-size: 17px;
-}
-.selectCategory{
-    font-size: 17px;
-    width: 180px;
-}
-
-.takeThumbnailBtn{
-    display: inline-block;
-    box-sizing: border-box;
-    width: 50%;
-    padding: 14px 20px;
-    margin: 15px 0px 20px;
-    background-color: #805ACB;
-    color: white;
-    border: none;
-    font-size: 17px;
-}
-
-.colorPicker{
-    font-size: 17px;
-    margin: 30px 0px 15px;
 }
 
 .modalBtn{
