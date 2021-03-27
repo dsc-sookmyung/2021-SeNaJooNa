@@ -4,7 +4,6 @@ import axios from 'axios'
 import styles from './ThirdPage.module.css';
 
 import { withRouter } from 'react-router';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
 import { auth } from '../../actions/user_action'
 import Favorite from './Favorite';
@@ -12,7 +11,6 @@ import Favorite from './Favorite';
 import PlaceCardsDiv from '../../components/PlaceCard/PlaceCardsDiv'
 
 function CollectionPage(props) {
-    const [places, setPlaces] = useState([])
     const [collection, setCollection] = useState({});
     const [isAuth, setIsAuth] = useState(false)
     const [user, setUser] = useState("")
@@ -28,10 +26,6 @@ function CollectionPage(props) {
         })
     }, [])
     useEffect(() => {
-        axios.get(`/api/places/${props.location.state.collection._id}`).then((response) => {
-            setPlaces(response.data)
-        })
-
         axios.get(`/api/collections/${props.location.state.collection._id}`).then((response) => {
             setCollection(response.data.collection)
         })

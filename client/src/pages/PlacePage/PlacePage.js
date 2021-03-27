@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import CommentCard from '../../components/CommentCard/CommentCard';
 import PlaceForm from '../../components/PlaceCard/PlaceForm';
-import PlaceEmptyCard from '../../components/PlaceCard/PlaceEmptyCard'
 import styles from './FourthPage.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -158,7 +157,7 @@ function PlacePage(props) {
                     <div className={styles.topPhoto}>
                         {
                             image.map((img, idx) =>
-                                <div className={idx == 0 ? styles.placePhotoThumb : styles.placePhoto} key={img}>
+                                <div className={idx === 0 ? styles.placePhotoThumb : styles.placePhoto} key={img}>
                                     <div className={styles.placePhotoImage}>
                                         {
                                             (isAuth && place.creator === user) ?

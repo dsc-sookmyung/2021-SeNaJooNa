@@ -56,7 +56,7 @@ function PlaceCardsDiv(props){
     return (
         <div className={props.isLiked? `${styles.gridContainer} ${styles.gridPlace}` :`${styles.gridContainer}`}>
             {places.map((place) => (
-                <div className={styles.cardContainer}>
+                <div className={styles.cardContainer} key={place.placeId._id}>
                     {(isAuth && collection && collection.creator===user)?
                     <FontAwesomeIcon 
                         icon={faTimesCircle} color="gray" size="lg" 
