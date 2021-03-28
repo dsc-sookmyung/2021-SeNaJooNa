@@ -32,6 +32,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background-color: white;
 }
 .img{
     width: 100%;
