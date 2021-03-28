@@ -23,11 +23,7 @@ function MainPage() {
         <div>
             <div className={`${styles.mainPage} ${styles.part1}`}>
                 <div className={styles.text}>요즘 핫한 그곳! 카테고리별로 살펴볼까요?</div>
-                {/* <div className={styles.categoryCards}>
-                    {categories.map((category) => (
-                        <CategoryCard category={category} key={category._id} categories={categories} />
-                    ))}
-                </div> */}
+
                 <div className={styles.slideBox}>
                     <span className={styles.slideClick} onClick={moveLeft}>&#8249;</span>
 
@@ -48,37 +44,24 @@ function MainPage() {
                     <div className={styles.textSmall}>원하는 장소의 북마크를 눌러 나만의 컬렉션을 만들어보세요</div>
                 </div>
                 <div>
-                    <button className={styles.btn}>Make Collection</button>
+                    <CollectionEmptyCard />
                 </div>
             </div>
             <div className={`${styles.mainPage} ${styles.part3} ${styles.part}`}>
                 <div className={styles.textBig}>
-                    Collection I Made</div>
-                <div className={styles.collectionCards}>
-                    <CollectionEmptyCard />
-                    <CollectionEmptyCard />
-                    <CollectionEmptyCard />
+                    ❤️ 좋아요
+                </div>
+                <div>
+                    <div className={styles.textBig}>컬렉션 저장하기</div>
+                    <div className={styles.textSmall}>다시 보고 싶은 컬렉션의 좋아요를 눌러 컬렉션을 저장하세요</div>
                 </div>
             </div>
             <div className={`${styles.mainPage} ${styles.part4} ${styles.part}`}>
-                <div className={styles.collectionCards}>
-                    <CollectionEmptyCard />
-                    <CollectionEmptyCard />
-                    <CollectionEmptyCard />
-                    <CollectionEmptyCard />
-                    <CollectionEmptyCard />
+                <div>
+                    <div className={styles.textBig}>플레이스 만들기</div>
+                    <div className={styles.textSmall}>검색했는데 장소가 없다면 직접 만들어보세요</div>
                 </div>
-                <div className={styles.textBig}>
-                    Collection I Like</div>
-            </div>
-            <div className={`${styles.mainPage} ${styles.part3} ${styles.part}`}>
-                <div className={styles.textBig}>
-                    Place I Like
-                </div>
-                <div className={styles.placeCards}>
-                    <PlaceEmptyCard />
-                    <PlaceEmptyCard />
-                    <PlaceEmptyCard />
+                <div>
                     <PlaceEmptyCard />
                 </div>
             </div>
@@ -96,17 +79,18 @@ function moveLeft() {
         cardNum = 0;
     moveCard()
 }
+
 function moveRight() {
     cardNum -= 1;
     if (cardNum < cardLimit)
         cardNum = cardLimit;
     moveCard();
 }
+
 function moveCard() {
     let t = cardNum * 300;
     let str = 'translate(' + t + 'px)';
     document.getElementById('translatedCards').style.transform = str;
-    // console.log(cardNum);
 }
 
 export default MainPage

@@ -8,10 +8,34 @@
     font-size: 30px;
 }
 
-/* .categoryCards{
+/* ----- slide ----- */
+.slideBox{
+    border: 1.5px solid lightgray;
     display: flex;
-    justify-content: space-evenly;
-} */
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 10px;
+}
+
+.slideClick{
+    font-size: 100px;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+.slideClick:hover{
+    background-color: lightgray;
+}
+
+.cardBox{
+    overflow: hidden;
+}
+
+.categoryCards{
+    display: flex;
+    gap: 40px;
+    transition: 0.6s;
+}
+/* ----- slide ----- */
 
 .part1{
     background-color: lavender;
@@ -32,20 +56,21 @@
     justify-content: space-around;
     align-items: center;
 }
+
 .textBig{
-    /* background-color: lawngreen; */
     margin-top: 10px;
     margin-bottom: 20px;
     font-size: 30px;
 }
+
 .textSmall{
-    /* background-color: lightcoral; */
     margin-top: 10px;
     margin-bottom: 20px;
     font-size: 20px;
     color: gray;
 }
-.btn{
+
+/* .btn{
     font-size: 30px;
     padding: 10px 20px;
     cursor: pointer;
@@ -56,42 +81,10 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    /* display: grid;
-    grid-template-columns: repeat(5, 1fr); */
 }
+
 .placeCards{
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    /* display: grid;
-    grid-template-columns: repeat(5, 1fr); */
-}
-/* ----- slide ----- */
-.slideBox{
-    border: 1.5px solid lightgray;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 30px 10px;
-}
-
-.slideClick{
-    font-size: 100px;
-    padding-bottom: 20px;
-    cursor: pointer;
-}
-.slideClick:hover{
-    background-color: lightgray;
-}
-
-.cardBox{
-    /* border: 2px solid blueviolet; */
-    overflow: hidden;
-}
-
-.categoryCards{
-    /* border: 2px solid orange; */
-    display: flex;
-    gap: 40px;
-    transition: 0.6s;
-}
+} */
