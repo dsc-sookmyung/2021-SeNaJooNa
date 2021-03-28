@@ -10,7 +10,7 @@ function PlaceCard(props) {
     const [image, setImage] = useState("")
     const [isAuth, setIsAuth] = useState(false)
     const [like, setLike] = useState(props.place.like_count)
-    const [isLiked, setIsLiked] = useState(props.isLiked?true:false)
+    const [isLiked, setIsLiked] = useState(props.isLiked ? true : false)
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -22,7 +22,7 @@ function PlaceCard(props) {
         dispatch(auth()).then(response => {
             if (response.payload.isAuth) {
                 setIsAuth(true)
-                if(props.query){
+                if (props.query) {
                     axios.get(`/api/like/place/${props.place._id}`).then((response) => {
                         if (response.data.like)
                             setIsLiked(true)
@@ -32,7 +32,7 @@ function PlaceCard(props) {
                 }
             }
         })
-        
+
     }, [])
     function OnLikeHandler() {
         if (isAuth) {
@@ -53,19 +53,19 @@ function PlaceCard(props) {
     }
     return (
         <div className={styles.placeCard}>
-            <span className={styles.like} onClick={OnLikeHandler}>{isLiked ? "❤️" : "🤍"} {like}</span>
-            {/* <Link to={{
-                    pathname: `/fourth?collection=${props.collection}&place=${props.place._id}`,
-                    state: {
-                        place: props.place
-                    }
-                }}> */}
+            <span className={styles.like} onClick={OnLikeHandler}>
+                {isLiked ? "❤️" : "🤍"} {like}
+            </span>
             <Link to={`/place?collection=${props.collection}&place=${props.place._id}`} className={styles.linkTag}>
                 <div className={styles.imgContainer}>
                     <img className={styles.img} src={image} />
                 </div>
-                <div className={styles.title}>{props.place.name}</div>
-                <div className={styles.detail}>{props.place.description}</div>
+                <div className={styles.title}>
+                    {props.place.name}
+                </div>
+                <div className={styles.detail}>
+                    {props.place.description}
+                </div>
             </Link>
         </div>
     )

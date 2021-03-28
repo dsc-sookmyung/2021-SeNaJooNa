@@ -29,29 +29,21 @@ function CategoryPage(props) {
         })
     }, []);
 
-    // const collectionList = collections.filter((collection) => collection.private === false)
-
     return (
         <div>
             <div className={styles.part1}>
-                <div className={styles.text}>당신이 선택한 카테고리에는 이런 컬렉션들이 존재합니다. </div>
+                <div className={styles.textBig}>당신이 선택한 카테고리에는 이런 컬렉션들이 존재합니다. </div>
                 <div className={`${styles.gridContainer} ${styles.grid4x2}`}>
                     {collections.map((collection) => (
                         <CollectionCard collection={collection} key={collection._id} />
                     ))}
                 </div>
-                <div className={styles.previousNextDiv}>
-                    <a href='#' className={styles.previousNext}>&#8249;</a>
-                    &nbsp;&nbsp;
-                    <a href='#' className={styles.previousNext}>&#8250;</a>
-                </div>
             </div>
             {
                 recommend.map((rec) => (
-                    // rec.collection.length > 0 &&
                     <div className={styles.part2}>
-                        <div className={styles.text}>다른 카테고리가 궁금하신가요?</div>
-                        <div className={styles.text}>{rec.category}</div>
+                        <div className={styles.textBig}>다른 카테고리가 궁금하신가요?</div>
+                        <div className={styles.textSmall}>{rec.category}</div>
                         <div className={`${styles.gridContainer} ${styles.grid4x1}`}>
                             {rec.collection.map((collection) => (
                                 <CollectionCard collection={collection} key={collection._id} />
@@ -60,7 +52,6 @@ function CategoryPage(props) {
                     </div>
                 ))
             }
-
         </div>
     )
 }

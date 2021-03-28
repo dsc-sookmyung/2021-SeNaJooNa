@@ -60,14 +60,14 @@ function RegisterPage(props) {
     return (
         <div className={styles.container}>
             <div className={styles.loginRegisterPage}>
-                <div className={`${styles.formBox} ${styles.login}`}>
+                <div className={styles.formBox}>
                     <h2>Register</h2>
 
                     <hr className={styles.hr} />
                     <form onSubmit={onSubmitHandler}>
                         <label for='email'>Email</label>
                         <input type="email" value={Email} onChange={onEmailHandler} placeholder='Enter Email' name='email' id='email' className={styles.input} required></input>
-                       
+
                         <label for='name'>Name</label>
                         <input type="text" value={Name} onChange={onNameHandler} placeholder='Enter Name' name='name' id='name' className={styles.input} required></input>
 

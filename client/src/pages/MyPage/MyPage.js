@@ -47,7 +47,7 @@ function MyPage(props) {
     <div>
       <div className={styles.part1}>
         <div className={styles.text}>Collection I made</div>
-        <div className={`${styles.gridContainer} ${styles.gridCollection}`}>
+        <div className={styles.gridContainer}>
           {collections.map((collection) => (
             <CollectionCard collection={collection} key={collection._id} />
           ))}
@@ -58,7 +58,7 @@ function MyPage(props) {
       </div>
       <div className={styles.part2}>
         <div className={styles.text}>Collection I like</div>
-        <div className={`${styles.gridContainer} ${styles.gridCollection}`}>
+        <div className={styles.gridContainer}>
           {likeCollections.map((like) => {
             return (
               <CollectionCard
@@ -71,7 +71,7 @@ function MyPage(props) {
       </div>
       <div className={styles.part3}>
         <div className={styles.text}>Place I like</div>
-        <PlaceCardsDiv isAuth={isAuth} user={user} collection={undefined} isLiked={true}/>
+        <PlaceCardsDiv isAuth={isAuth} user={user} collection={undefined} isLiked={true} />
       </div>
     </div>
   );

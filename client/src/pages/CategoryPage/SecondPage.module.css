@@ -8,10 +8,17 @@
     background-color: lavenderblush;
 }
 
-.text{
+.textBig{
+    font-size: 20px;
     margin-left: 30px;
     margin-bottom: 30px;
 }
+.textSmall{
+    margin-left: 30px;
+    margin-bottom: 30px;
+    padding-left: 40px;
+}
+
 .gridContainer{
     display: grid;
     place-items: center;
@@ -28,25 +35,4 @@
 
 .grid4x1{
     grid-template-rows: repeat(1, 1fr);
-}
-
-.previousNextDiv{
-    display: flex;
-    justify-content: center;
-}
-
-.previousNext{
-    text-decoration: none;
-    display: inline-block;
-    padding: 0px 17px;
-    color: black;
-    background-color: #f1f1f1;
-    font-size: 30px;
-    border-radius: 10%;
-    height: 45px;
-    border: 1px solid black;
-}
-
-.previousNext:hover{
-    background-color: #ddd;
 }

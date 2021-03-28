@@ -55,15 +55,14 @@ function CollectionCard(props) {
     }
 
     return (
-        <div>
-
+        <div className={styles.collectionCard}>
             <Link to={{
                 pathname: '/collection',
                 state: {
                     collection: props.collection
                 }
             }}>
-                <div className={styles.collectionCard}>
+                <div className={styles.linkContainer}>
                     <div className={styles.imgContainer}>
                         <img className={styles.img} src={props.collection.thumbnail} />
                     </div>

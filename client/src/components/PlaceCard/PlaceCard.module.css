@@ -52,6 +52,7 @@
     padding: 5px 10px;
 }
 
+/* PlaceEmptyCard */
 .placeEmptyCard{
     width: 200px;
     height: 220px;
@@ -69,14 +70,7 @@
     font-size: 150px;
 }
 
-/* FORM */
-.input{
-    padding: 12px 20px;
-    margin: 20px 0px;
-    width: 100%;
-    display: inline-block;
-    box-sizing: border-box;
-}
+/* PlaceForm */
 .formBox{
     flex: 1;
     padding: 20px;
@@ -86,6 +80,18 @@
 
 .hr{
     border: 1px solid #f1f1f1;
+    margin: 25px 0px;
+}
+
+.input{
+    padding: 12px 20px;
+    margin: 20px 0px;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.imageLabel{
     margin: 25px 0px;
 }
 
@@ -110,6 +116,7 @@
     background-color: #4caf50;
 }
 
+/* PlaceCardsDiv */
 .gridContainer{
     display: grid;
     place-items: center;
@@ -117,17 +124,21 @@
     grid-template-rows: repeat(3, 1fr);
     gap: 30px 0px; 
 }
+
 .gridPlace{
     grid-template-columns: repeat(5, 1fr);
 }
+
 .cardContainer {
     display: flex;
     position: relative;
 }
+
 .deleteIcon {
     position: absolute;
     top: 7px;
     left: 7px;
     z-index: 1;
     color: white;
+    cursor: pointer;
 }

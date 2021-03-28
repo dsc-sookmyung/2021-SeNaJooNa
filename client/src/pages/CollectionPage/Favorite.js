@@ -7,10 +7,8 @@ import styles from './ThirdPage.module.css';
 function Favorite(props) {
 
     const collectionId = props.collectionId;
-    // const userId = props.userId;
 
     const [isAuth, setIsAuth] = useState(false)
-    // const [like, setLike] = useState(props.place.like_count)
     const [isLiked, setIsLiked] = useState("")
 
     const dispatch = useDispatch();
