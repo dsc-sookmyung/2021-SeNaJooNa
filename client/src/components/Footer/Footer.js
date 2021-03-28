@@ -10,8 +10,8 @@ function Footer() {
             </div>
             <div className={styles.info}>
                 Developer : SeNaJooNa<br />
-                Email : senajoona@gmail.com<br />
-                Github : https://github.com/dsc-sookmyung/2021-SeNaJooNa-OurPlace <br />
+                Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: senajoona@gmail.com<br />
+                Github &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: https://github.com/dsc-sookmyung/2021-SeNaJooNa-OurPlace <br />
                 Copyright © OurPlace. All Rights Reserved.
             </div>
         </div>
