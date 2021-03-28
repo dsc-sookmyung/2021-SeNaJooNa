@@ -33,34 +33,26 @@
     font-size: 17px;
     margin: 25px 0px;
 }
+.radioInput{
+    cursor: pointer;
+}
 .radioLabel{
     cursor: pointer;
     margin-right: 15px;
 }
-.radioInput{
-    cursor: pointer;
-}
 
-.selectDiv{
+.selectCategoryDiv{
     margin: 25px 0px;
     font-size: 17px;
 }
-.select{
+.selectCategory{
     font-size: 17px;
     width: 180px;
 }
 
-.takeThumbnailBtn{
-    display: inline-block;
-    box-sizing: border-box;
-    width: 200px;
-    padding: 14px 20px;
-    margin: 15px 0px 20px;
-    background-color: #805ACB;
-    color: white;
-    border: none;
+.imageLabel{
+    margin: 25px 0px;
     font-size: 17px;
-    cursor: pointer;
 }
 
 .button{

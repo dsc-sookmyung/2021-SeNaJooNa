@@ -149,7 +149,9 @@ function MakeCollectionPage(props) {
                         </div>
 
                         <div className={styles.selectCategoryDiv}>
-                            <label for='selectCategory'>카테고리 종류: &nbsp;&nbsp;&nbsp;</label>
+                            <label for='selectCategory'>
+                                카테고리 종류: &nbsp;&nbsp;&nbsp;
+                            </label>
                             <select value={category} onChange={onCategoryHandler} id='selectCategory' className={styles.selectCategory}>
                                 <option>카테고리 선택</option>
                                 {categories.map((category) => (
@@ -158,11 +160,13 @@ function MakeCollectionPage(props) {
                             </select>
                         </div>
 
-                        {/* <button className={styles.takeThumbnailBtn}>썸네일 가져오기</button> */}
                         <div className="form-group">
-                            <lable for='image'>Image </lable>
+                            <label for='image' className={styles.imageLabel}>
+                                Image:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
                             <input name="image" onChange={onImageHandler} className="form-control" type="file" id='image' />
                         </div>
+
                         <hr className={styles.hr} />
 
                         <button className={`${styles.button} ${styles.cancelBtn}`}>Cancel</button>
