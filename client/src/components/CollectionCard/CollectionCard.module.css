@@ -1,4 +1,8 @@
 .collectionCard{
+    position:relative;
+}
+
+.linkContainer{
     width: 200px;
     height: 150px;
     position: relative;
@@ -51,8 +55,12 @@
     border: none;
     border-radius: 6px;
     text-align: center;
-    width:fit-content;
+    width: fit-content;
     cursor: pointer;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform:translate(-50%, -50%);
 }
 
 .collectionEmptyCard{
