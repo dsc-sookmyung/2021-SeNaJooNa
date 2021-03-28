@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import {loginUser} from '../../actions/user_action';
+import { loginUser } from '../../actions/user_action';
 import styles from './LoginRegisterPage.module.css';
 import { withRouter } from 'react-router-dom';
 function LoginPage(props) {
@@ -41,7 +41,7 @@ function LoginPage(props) {
     return (
         <div className={styles.container}>
             <div className={styles.loginRegisterPage}>
-                <div className={`${styles.formBox} ${styles.login}`}>
+                <div className={styles.formBox}>
                     <h2>Log In</h2>
 
                     <hr className={styles.hr} />
