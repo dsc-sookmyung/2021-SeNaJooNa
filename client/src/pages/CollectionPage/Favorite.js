@@ -15,7 +15,7 @@ function Favorite(props) {
     useEffect(() => {
         console.log(collectionId);
         dispatch(auth()).then(response => {
-            if (response.payload.isAuth) {
+            if (response.payload.isAuth && props.collection.creator !== response.payload._id) {
                 setIsAuth(true)
 
                 axios.get(`/api/likeCollections/${props.collection._id}`).then((response) => {

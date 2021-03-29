@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Collection } = require('../models/Collection');
+const { CollectionLikeion, CollectionLike } = require('../models/CollectionLike');
 const { upload } = require('../middleware/upload');
 const { auth } = require('../middleware/auth');
 
@@ -83,11 +84,16 @@ router.put("/:id", upload.single('file'), (req, res) => {
 })
 
 router.delete("/:id", (req, res) => {
-    Collection.findByIdAndDelete({ _id: req.params.id })
-        .exec((err, collection) => {
-            if (err) return res.status(500).send("Collection Delete failed");
-            res.status(200).send({ success: true });
-        })
+
+    CollectionLike.deleteMany({ collectionId: req.params.id }, (err, collection) => {
+        if (err) return res.status(500).send(err);
+        Collection.findByIdAndDelete({ _id: req.params.id })
+            .exec((err, collection) => {
+                if (err) return res.status(500).send("Collection Delete failed");
+                res.status(200).send({ success: true });
+            })
+    })
+
 })
 
 module.exports = router;
