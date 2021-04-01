@@ -133,6 +133,8 @@ function PlacePage(props) {
             if (response.data.success) {
                 setPlace(response.data.place)
                 setImage(response.data.place.thumbnail)
+                setNewImage([])
+                document.getElementById("image").value = "";
             }
         })
     }
@@ -205,7 +207,7 @@ function PlacePage(props) {
                             {place.description}
                         </div>
                         <div>
-                            The number of comments : 00
+                            The number of comments : {comments.length}
                         </div>
                     </div>
                 </div>
