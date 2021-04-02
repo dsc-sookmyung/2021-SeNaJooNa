@@ -3,8 +3,7 @@ import axios from 'axios'
 
 import styles from './ThirdPage.module.css';
 
-import PlaceCard from '../../components/PlaceCard/PlaceCard';
-import PlaceEmptyCard from '../../components/PlaceCard/PlaceEmptyCard'
+import PlaceCardsDiv from '../../components/PlaceCard/PlaceCardsDiv'
 import { withRouter } from 'react-router';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
@@ -73,12 +72,7 @@ function CollectionPage(props) {
                     </div>
                 }
             </div>
-            <div className={styles.gridContainer}>
-                {places.map((place) => (
-                    <PlaceCard collection={props.location.state.collection._id} place={place.placeId} key={place.placeId._id} />
-                ))}
-                {isAuth && collection.creator === user ? <a href="/makePlace"><PlaceEmptyCard /></a> : undefined}
-            </div>
+            <PlaceCardsDiv isAuth={isAuth} user={user} collection={props.location.state.collection} />
             {/* </div> */}
             {/* <div className={styles.right}>
                 지도
