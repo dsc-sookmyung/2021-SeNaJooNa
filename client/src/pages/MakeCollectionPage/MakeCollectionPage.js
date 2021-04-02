@@ -13,9 +13,10 @@ function MakeCollectionPage(props) {
     const [content, setContent] = useState("")
     const [category, setCategory] = useState("")
     const [image, setImage] = useState(undefined)
-    const [color, setColor] = useState("");
+    // const [color, setColor] = useState("");
     const [id, setId] = useState(props.match.params.id);
-    const [collections, setCollection] = useState({});
+    // const [collections, setCollection] = useState({});
+    const [previewURL, setPreviewURL] = useState("")
     const [privateCollection, setPrivateCollection] = useState(false);
 
     useEffect(() => {
@@ -31,6 +32,7 @@ function MakeCollectionPage(props) {
                 setContent(response.data.collection.content);
                 setCategory(response.data.collection.categoryId);
                 setPrivateCollection(response.data.collection.private);
+                setPreviewURL(response.data.collection.thumbnail);
             })
         }
     }, [])
@@ -48,12 +50,24 @@ function MakeCollectionPage(props) {
     }
 
     const onImageHandler = (event) => {
-        setImage(event.currentTarget.files[0]);
+        event.preventDefault();
+        const reader = new FileReader();
+        const image = event.currentTarget.files[0];
+        reader.onloadend = () => {
+            setImage(image);
+            setPreviewURL(reader.result);
+        }
+        reader.readAsDataURL(image);
     }
 
-    const onColorHandler = (event) => {
-        setColor(event.target.value);
+    const onImageDeleteHandler = (event) => {
+        event.preventDefault()
+        setImage(undefined);
+        setPreviewURL("");
     }
+    // const onColorHandler = (event) => {
+    //     setColor(event.target.value);
+    // }
 
     const onPublicPrivateHandler = (event) => {
         if (event.target.value === 'private') {
@@ -121,6 +135,7 @@ function MakeCollectionPage(props) {
 
     }
 
+
     return (
         <div className={styles.container}>
             <div className={styles.makeCollectionPage}>
@@ -165,6 +180,12 @@ function MakeCollectionPage(props) {
                                 Image:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </label>
                             <input name="image" onChange={onImageHandler} className="form-control" type="file" id='image' />
+                            {previewURL ?
+                                <div className={styles.imgContainer} >
+                                    <img className={styles.img} src={previewURL}></img>
+                                </div>
+                                :
+                                null}
                         </div>
 
                         <hr className={styles.hr} />
