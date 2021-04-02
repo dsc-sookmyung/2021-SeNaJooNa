@@ -55,13 +55,12 @@ function CollectionPage(props) {
     }
 
     return (
-        <div className={styles.thirdPage}>
-            {/* <div className={styles.left}> */}
+        <div className={styles.collectionPage}>
             <div>
-                <div className={styles.text}>
+                <div className={styles.textBig}>
                     특정 카테고리명 &#8250; {collection.title}
                 </div>
-                <div>
+                <div className={styles.textSmall}>
                     {collection.content}
                 </div>
                 {(isAuth && user !== collection.creator) ?
@@ -73,10 +72,6 @@ function CollectionPage(props) {
                 }
             </div>
             <PlaceCardsDiv isAuth={isAuth} user={user} collection={props.location.state.collection} />
-            {/* </div> */}
-            {/* <div className={styles.right}>
-                지도
-            </div> */}
         </div>
     )
 }
