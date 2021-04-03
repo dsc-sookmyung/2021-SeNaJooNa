@@ -49,20 +49,26 @@ router.get("/:id", (req, res) => {
 
 router.put("/:id", uploadPlace.array('file'), (req, res) => {
     let place = {thumbnail:[], ...req.body};
-    if(req.body.existed)
+    if(req.body.existed){
         place.thumbnail = req.body.existed
-    if (req.files !== undefined) {
-        // console.log(req.files)
-        req.files.map(img => place.thumbnail.push(img.location))
     }
-    console.log(place)
-    
-    Place.findByIdAndUpdate({ _id: req.params.id }, place, { new: true })
+    if (req.files !== undefined) {
+        const thumbnail = req.files.map(img => {return img.location})
+        Place.findByIdAndUpdate({ _id: req.params.id }, {$push: {thumbnail: {$each: thumbnail}}}, { new: true })
         .exec((err, place) => {
             // console.log(err)
             if (err) return res.status(500).send("Place Update failed");
             res.status(200).send({ success: true, place });;
         })
+    } else {
+        Place.findByIdAndUpdate({ _id: req.params.id }, place, { new: true })
+        .exec((err, place) => {
+            // console.log(err)
+            if (err) return res.status(500).send("Place Update failed");
+            res.status(200).send({ success: true, place });;
+        })
+    }
+    
 })
 
 router.delete("/:id", (req, res) => {
