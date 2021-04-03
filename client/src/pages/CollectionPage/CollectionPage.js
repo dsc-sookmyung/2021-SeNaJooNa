@@ -84,18 +84,18 @@ function CollectionPage(props) {
                 <div className={styles.textBig}>
                     특정 카테고리명 &#8250; {collection.title}
                 </div>
-                <div className={styles.textSmall}>
-                    {collection.content}
-                </div>
                 {(isAuth && user === collection.creator) ?
-                    <div>
+                    <div className={styles.floatRight}>
                         <button onClick={onDeleteHandler} className={styles.like}>삭제</button>
                         <button onClick={onUpdateHandler} className={styles.like}>수정</button>
                     </div> : null
 
                 }
-                <div>
+                <div className={styles.floatRight}>
                     <button onClick={collectionLikeHandler} className={styles.like}>{isLiked ? "❤" : "♡"} Collection Like </button>
+                </div>
+                <div className={styles.textSmall}>
+                    {collection.content}
                 </div>
             </div>
             <PlaceCardsDiv isAuth={isAuth} user={user} collection={props.location.state.collection} />
