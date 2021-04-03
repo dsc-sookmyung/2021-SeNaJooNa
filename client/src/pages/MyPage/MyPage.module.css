@@ -13,6 +13,11 @@
     margin: 0px 30px;
     padding: 20px 20px 0px;
 }
+.text3{
+    font-size: 20px;
+    margin: 0px 30px;
+    padding: 20px 20px 30px;
+}
 
 .gridContainer{
     display: grid;
