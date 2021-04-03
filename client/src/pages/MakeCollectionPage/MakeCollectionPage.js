@@ -190,7 +190,7 @@ function MakeCollectionPage(props) {
 
                         <hr className={styles.hr} />
 
-                        <button className={`${styles.button} ${styles.cancelBtn}`}>취소</button>
+                        <button onClick={props.history.goBack} className={`${styles.button} ${styles.cancelBtn}`} >취소</button>
                         {(id === '_make') ?
                             <button type="submit" className={`${styles.button} ${styles.makeBtn}`}>등록</button>
 

@@ -8,8 +8,7 @@ import styles from './CollectionCard.module.css';
 function CollectionCard(props) {
 
     const [isAuth, setIsAuth] = useState(false)
-    // const [like, setLike] = useState(props.place.like_count)
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLiked, setIsLiked] = useState(props.isLiked ? true : false)
     const [likeCount, setLikeCount] = useState(props.collection.like);
     const [user, setUser] = useState('');
 

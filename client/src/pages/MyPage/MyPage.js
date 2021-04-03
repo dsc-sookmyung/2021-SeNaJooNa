@@ -62,8 +62,11 @@ function MyPage(props) {
           {likeCollections.map((like) => {
             return (
               <CollectionCard
+                isAuth={isAuth}
+                user={user}
                 collection={like.collectionId}
                 key={like.collectionId._id}
+                isLiked={true}
               />
             );
           })}
