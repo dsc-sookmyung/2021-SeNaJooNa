@@ -73,7 +73,7 @@ function MyPage(props) {
         </div>
       </div>
       <div className={styles.part3}>
-        <div className={styles.text}>좋아요를 누른 플레이스</div>
+        <div className={styles.text3}>좋아요를 누른 플레이스</div>
         <PlaceCardsDiv isAuth={isAuth} user={user} collection={undefined} isLiked={true} />
       </div>
     </div>

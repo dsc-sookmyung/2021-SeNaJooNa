@@ -218,7 +218,11 @@
 }
 
 .collectionName {
-    text-decoration: white;
+    text-decoration: none;
     color: #805ACB;
     font-weight: 800;
+    cursor: pointer;
+}
+.collectionName:hover{
+    text-decoration: underline;
 }
