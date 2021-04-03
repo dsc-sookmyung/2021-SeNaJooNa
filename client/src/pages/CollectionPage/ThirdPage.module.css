@@ -9,6 +9,17 @@
     font-size: 20px;
 }
 
+.categoryName {
+    text-decoration: none;
+    color: #805ACB;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.categoryName:hover{
+    text-decoration: underline;
+}
+
 .textSmall{
     margin-left: 30px;
     margin-bottom: 30px;

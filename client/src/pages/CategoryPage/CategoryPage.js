@@ -23,10 +23,11 @@ function CategoryPage(props) {
             const collectionList = response.data.collection.filter((collection) => collection.private === false);
             setCollections(collectionList);
         })
-
-        Promise.all(props.location.state.recommend.map(getRecommend)).then((result) => {
-            setRecommend(result);
-        })
+        if (props.location.state.recommend) {
+            Promise.all(props.location.state.recommend.map(getRecommend)).then((result) => {
+                setRecommend(result);
+            })
+        }
     }, []);
 
     return (

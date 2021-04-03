@@ -7,6 +7,7 @@ import PlaceCardsDiv from '../../components/PlaceCard/PlaceCardsDiv'
 import { withRouter } from 'react-router';
 import { useDispatch } from 'react-redux'
 import { auth } from '../../actions/user_action'
+import { Link } from 'react-router-dom';
 
 function CollectionPage(props) {
     const [places, setPlaces] = useState([])
@@ -14,7 +15,7 @@ function CollectionPage(props) {
     const [isAuth, setIsAuth] = useState(false)
     const [user, setUser] = useState("")
     const [isLiked, setIsLiked] = useState(false)
-    const [categoryName, setCategoryName] = useState("");
+    const [category, setCategory] = useState("");
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,7 +36,8 @@ function CollectionPage(props) {
         })
 
         axios.get(`/api/collections/${props.location.state.collection._id}`).then((response) => {
-            setCategoryName(response.data.collection.categoryId.title)
+            console.log(response.data)
+            setCategory(response.data.collection.categoryId)
             setCollection(response.data.collection)
         })
     }, [])
@@ -79,12 +81,20 @@ function CollectionPage(props) {
         }
     }
 
-
     return (
         <div className={styles.collectionPage}>
             <div>
                 <div className={styles.textBig}>
-                    {categoryName} &#8250; {collection.title}
+                    <Link to={{
+                        pathname: './category', state: {
+                            categoryId: category._id,
+                        }
+                    }}
+                        className={styles.categoryName}
+                    >
+
+                        {category.title}
+                    </Link> &#8250; {collection.title}
                 </div>
 
                 {(isAuth && user === collection.creator) ?
