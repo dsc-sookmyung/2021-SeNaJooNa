@@ -14,6 +14,7 @@ function CollectionPage(props) {
     const [isAuth, setIsAuth] = useState(false)
     const [user, setUser] = useState("")
     const [isLiked, setIsLiked] = useState(false)
+    const [categoryName, setCategoryName] = useState("");
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -34,6 +35,7 @@ function CollectionPage(props) {
         })
 
         axios.get(`/api/collections/${props.location.state.collection._id}`).then((response) => {
+            setCategoryName(response.data.collection.categoryId.title)
             setCollection(response.data.collection)
         })
     }, [])
@@ -82,21 +84,23 @@ function CollectionPage(props) {
         <div className={styles.collectionPage}>
             <div>
                 <div className={styles.textBig}>
-                    특정 카테고리명 &#8250; {collection.title}
+                    {categoryName} &#8250; {collection.title}
                 </div>
+
+                {(isAuth && user === collection.creator) ?
+                    <div className={styles.floatRight}>
+                        <button onClick={onDeleteHandler} className={styles.like}>삭제</button>
+                        <button onClick={onUpdateHandler} className={styles.like}>수정</button>
+                    </div> :
+                    <div className={styles.floatRight}>
+                        <button onClick={collectionLikeHandler} className={styles.like}>{isLiked ? "❤" : "♡"} Collection Like </button>
+                    </div>
+                }
+
                 <div className={styles.textSmall}>
                     {collection.content}
                 </div>
-                {(isAuth && user === collection.creator) ?
-                    <div>
-                        <button onClick={onDeleteHandler} className={styles.like}>삭제</button>
-                        <button onClick={onUpdateHandler} className={styles.like}>수정</button>
-                    </div> : null
 
-                }
-                <div>
-                    <button onClick={collectionLikeHandler} className={styles.like}>{isLiked ? "❤" : "♡"} Collection Like </button>
-                </div>
             </div>
             <PlaceCardsDiv isAuth={isAuth} user={user} collection={props.location.state.collection} />
         </div>

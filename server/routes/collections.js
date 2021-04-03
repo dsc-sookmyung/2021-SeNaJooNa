@@ -61,6 +61,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
     Collection.findOne({ _id: req.params.id })
+        .populate('categoryId')
         .exec((err, collection) => {
             if (err) return res.status(500).send("Collection read failed");
             if (!collection) return res.status(404).send("No Collection");
