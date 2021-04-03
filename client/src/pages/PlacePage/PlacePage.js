@@ -7,7 +7,7 @@ import { faEdit, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { useDispatch } from 'react-redux'
 import { auth } from '../../actions/user_action'
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import queryString from 'query-string'
 import axios from 'axios';
 
@@ -23,6 +23,7 @@ function PlacePage(props) {
     const [commentInput, setCommentInput] = useState("")
     const [collections, setCollections] = useState([])
     const [collectionValue, setCollectionValue] = useState("")
+    const [collection, setCollection] = useState({})
     const params = queryString.parse(props.location.search);
 
     function getComments() {
@@ -73,6 +74,13 @@ function PlacePage(props) {
             setImage(response.data.place.thumbnail)
         })
         getComments()
+    }, [])
+
+    useEffect(() => {
+        if(params.collection !== "undefined")
+            axios.get(`/api/collections/${params.collection}`).then((response) => {
+                setCollection(response.data.collection)
+            })
     }, [])
 
     function onHandleComment(e) {
@@ -142,13 +150,20 @@ function PlacePage(props) {
     return (
         <div className={styles.fourthPage}>
             <div>
-                <div className={styles.text}>
-                    category
-                    &#8250;
-                    collection
-                    &#8250;
-                    {place.name}
-                </div>
+                {params.collection!=="undefined" && <div className={styles.text}>
+                    {/* category
+                    &#8250; */}
+                    <Link to={{
+                        pathname: '/collection',
+                        state: {
+                            collection: collection
+                        }
+                    }} className={styles.collectionName}>
+                        {collection.title}
+                    </Link>
+                    &nbsp; &#8250; &nbsp;
+                     {place.name}
+                </div>}
                 <button className={styles.addTo} onClick={() => openModal(isAuth, 'tempModal')}>
                     ✔&nbsp;&nbsp;Add to Collection
                 </button>
