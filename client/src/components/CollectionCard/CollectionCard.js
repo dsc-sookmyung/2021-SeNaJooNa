@@ -10,6 +10,7 @@ function CollectionCard(props) {
     const [isAuth, setIsAuth] = useState(false)
     // const [like, setLike] = useState(props.place.like_count)
     const [isLiked, setIsLiked] = useState(false)
+    const [likeCount, setLikeCount] = useState(props.collection.like);
     const [user, setUser] = useState('');
 
     const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function CollectionCard(props) {
                 axios.delete('/api/likeCollections', { data: doc }).then((response) => {
                     console.log(response);
                     setIsLiked(false);
+                    setLikeCount(likeCount - 1);
                     console.log(isLiked);
                 })
             }
@@ -46,6 +48,7 @@ function CollectionCard(props) {
                 axios.post('/api/likeCollections', doc).then((response) => {
                     console.log(response);
                     setIsLiked(true);
+                    setLikeCount(likeCount + 1);
                     console.log(isLiked);
                 })
             }
@@ -72,7 +75,7 @@ function CollectionCard(props) {
                     </div>
                 </div>
             </Link>
-            <button onClick={collectionLikeHandler} disabled={props.collection.creator === user} className={styles.like}>{isLiked ? "❤️" : "🤍"}좋아요 {props.collection.like}</button>
+            <button onClick={collectionLikeHandler} disabled={props.collection.creator === user} className={styles.like}>{isLiked ? "❤️" : "🤍"}좋아요 {likeCount}</button>
         </div>
     )
 }
