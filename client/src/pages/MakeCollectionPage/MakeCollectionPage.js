@@ -148,14 +148,14 @@ function MakeCollectionPage(props) {
                     <hr className={styles.hr} />
 
                     <form className={styles.form} onSubmit={onSubmitHandler}>
-                        <label for='title'>Collection Title</label>
+                        <label for='title'>제목</label>
                         <input type='text' value={title} onChange={onTitleHandler} id='title' placeholder='Enter Title' className={`${styles.input}`}></input>
 
-                        <label for='content'>Collection Content</label>
+                        <label for='content'>소개</label>
                         <input type='text' value={content} onChange={onContentHandler} id='content' placeholder='Enter Content' className={`${styles.input}`}></input>
 
                         <div className={styles.radioDiv}>
-                            <text>공개 여부: &nbsp;&nbsp;&nbsp;</text>
+                            <text>공개 / 비공개: &nbsp;&nbsp;&nbsp;</text>
                             <input type='radio' onChange={onPublicPrivateHandler} checked={privateCollection === false} name='publicPrivate' id='public' value='public' className={styles.radioInput} />
                             <label for='public' className={styles.radioLabel}>공개</label>
 
@@ -165,7 +165,7 @@ function MakeCollectionPage(props) {
 
                         <div className={styles.selectCategoryDiv}>
                             <label for='selectCategory'>
-                                카테고리 종류: &nbsp;&nbsp;&nbsp;
+                                카테고리: &nbsp;&nbsp;&nbsp;
                             </label>
                             <select value={category} onChange={onCategoryHandler} id='selectCategory' className={styles.selectCategory}>
                                 <option>카테고리 선택</option>
@@ -177,7 +177,7 @@ function MakeCollectionPage(props) {
 
                         <div className="form-group">
                             <label for='image' className={styles.imageLabel}>
-                                Image:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                썸네일 업로드:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </label>
                             <input name="image" onChange={onImageHandler} className="form-control" type="file" id='image' />
                             {previewURL ?
@@ -190,11 +190,11 @@ function MakeCollectionPage(props) {
 
                         <hr className={styles.hr} />
 
-                        <button className={`${styles.button} ${styles.cancelBtn}`}>Cancel</button>
+                        <button className={`${styles.button} ${styles.cancelBtn}`}>취소</button>
                         {(id === '_make') ?
-                            <button type="submit" className={`${styles.button} ${styles.makeBtn}`}>Make</button>
+                            <button type="submit" className={`${styles.button} ${styles.makeBtn}`}>등록</button>
 
-                            : <button type="submit" className={`${styles.button} ${styles.makeBtn}`}>Update</button>
+                            : <button type="submit" className={`${styles.button} ${styles.makeBtn}`}>수정</button>
 
                         }
                     </form>

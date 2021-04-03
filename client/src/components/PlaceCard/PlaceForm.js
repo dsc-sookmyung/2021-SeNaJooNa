@@ -68,19 +68,19 @@ function PlaceForm(props) {
             <h2>{(props.edit) ? "플레이스 수정하기" : "새 플레이스 만들기"}</h2>
             <hr className={styles.hr} />
             <div>
-                <label htmlFor='name'>Place Name</label>
+                <label htmlFor='name'>장소 이름</label>
                 <input type='text' placeholder='Enter Name' className={styles.input} value={name} onChange={changeNameHandler}></input>
 
-                <label htmlFor='description'>Place Description</label>
+                <label htmlFor='description'>장소 설명</label>
                 <input type='text' placeholder='Enter Description' className={styles.input} value={description} onChange={changeDescHandler}></input>
 
-                <label htmlFor='address'>Place Address</label>
+                <label htmlFor='address'>위치</label>
                 <input type='text' placeholder='Enter Address' className={styles.input} value={address} onChange={changeAddressHandler}></input>
 
                 {(props.edit) ? undefined :
                     <div>
                         <label for='image' className={styles.imageLabel}>
-                            Image
+                            사진 등록
                         </label>
                         <br /> <br />
                         <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
@@ -89,8 +89,8 @@ function PlaceForm(props) {
 
                 <hr className={styles.hr} />
 
-                <button className={`${styles.button} ${styles.cancelBtn}`} onClick={(props.edit) ? cancelHandler : props.closeModal}>Cancel</button>
-                <button className={`${styles.button} ${styles.makeBtn}`} onClick={(props.edit) ? submitHandler : submitNewHandler}>Ok</button>
+                <button className={`${styles.button} ${styles.cancelBtn}`} onClick={(props.edit) ? cancelHandler : props.closeModal}>취소</button>
+                <button className={`${styles.button} ${styles.makeBtn}`} onClick={(props.edit) ? submitHandler : submitNewHandler}>등록</button>
             </div>
         </div>
     )

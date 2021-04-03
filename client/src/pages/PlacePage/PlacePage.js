@@ -77,7 +77,7 @@ function PlacePage(props) {
     }, [])
 
     useEffect(() => {
-        if(params.collection !== "undefined")
+        if (params.collection !== "undefined")
             axios.get(`/api/collections/${params.collection}`).then((response) => {
                 setCollection(response.data.collection)
             })
@@ -121,7 +121,7 @@ function PlacePage(props) {
     }
 
     // New ImageS
-    async function onImageHandler(e){
+    async function onImageHandler(e) {
         e.preventDefault();
         var images = []
         for (var i = 0; i < e.target.files.length; i++) {
@@ -150,7 +150,7 @@ function PlacePage(props) {
     return (
         <div className={styles.fourthPage}>
             <div>
-                {params.collection!=="undefined" && <div className={styles.text}>
+                {params.collection !== "undefined" && <div className={styles.text}>
                     {/* category
                     &#8250; */}
                     <Link to={{
@@ -165,7 +165,7 @@ function PlacePage(props) {
                      {place.name}
                 </div>}
                 <button className={styles.addTo} onClick={() => openModal(isAuth, 'tempModal')}>
-                    ✔&nbsp;&nbsp;Add to Collection
+                    ✔&nbsp;&nbsp;스크랩
                 </button>
             </div>
 
@@ -191,25 +191,25 @@ function PlacePage(props) {
                             )
                         }
                         {/* Add Image Button */}
-                        
-                        
+
+
                     </div>
                     {
-                        (isAuth && place.creator===user) &&
+                        (isAuth && place.creator === user) &&
                         <div className={styles.placePhoto}>
                             <input name="image[]" onChange={onImageHandler} className="form-control" type="file" id='image' multiple />
-                            <button onClick={uploadImage} className={styles.imageBtn}>Upload</button>
+                            <button onClick={uploadImage} className={styles.imageBtn}>등록</button>
                         </div>
                     }
                     <div className={styles.topPhoto}>
                         {
-                            newImage.length > 0 && newImage.map((img)=><img src={img} className={styles.img} key={img} />)
+                            newImage.length > 0 && newImage.map((img) => <img src={img} className={styles.img} key={img} />)
 
                         }
                     </div>
                     <div className={styles.bottomInfo}>
                         <button className={styles.like} onClick={OnLikeHandler}>
-                            {isLiked ? "❤️" : "🤍"}&nbsp;Place Like
+                            좋아요&nbsp;&nbsp;{isLiked ? "❤️" : "🤍"}
                         </button>
                         <div className={styles.textBig}>
                             {place.name}&nbsp;
@@ -222,14 +222,14 @@ function PlacePage(props) {
                             {place.description}
                         </div>
                         <div>
-                            The number of comments : {comments.length}
-                        </div>
+                            댓글 수 : {comments.length}
+                        </div>
                     </div>
                 </div>
                 <div className={styles.right}>
                     <div>
                         <input type='text' placeholder='댓글 내용' className={styles.commentInput} value={commentInput} onChange={onHandleComment} />
-                        <button type='submit' className={styles.leaveCommentBtn} onClick={onSubmitComment}>Leave</button>
+                        <button type='submit' className={styles.leaveCommentBtn} onClick={onSubmitComment}>댓글 등록</button>
                     </div>
                     <hr className={styles.rightHr} />
                     <div>
@@ -247,10 +247,10 @@ function PlacePage(props) {
             <div id='tempModal' className={styles.tempModal}>
                 <div className={styles.modalContent}>
                     <span id='close' className={styles.close} onClick={() => { closeModal('tempModal') }}>&times;</span>
-                    <h2>Add Place to Collection</h2>
+                    <h2>내 컬렉션에 추가하기</h2>
                     <hr className={styles.hr} />
                     <div className={styles.selectCollectionDiv}>
-                        <label htmlFor='selectCollection'>Collection list: &nbsp;&nbsp;&nbsp;</label>
+                        <label htmlFor='selectCollection'>컬렉션 목록: &nbsp;&nbsp;&nbsp;</label>
                         <select id='selectCollection' className={styles.selectCollection} value={collectionValue} onChange={handleCollectionChange}>
                             {
                                 collections.map((collection) => (
@@ -261,11 +261,11 @@ function PlacePage(props) {
                     </div>
                     <div className={styles.popupGridContainer}>
                         <div>
-                            <button onClick={() => { window.location.href = '/makeCollection/_make' }} className={styles.popupBtn}>Make new collection</button>
+                            <button onClick={() => { window.location.href = '/makeCollection/_make' }} className={styles.popupBtn}>새 컬렉션 만들기</button>
                         </div>
                     </div>
                     <hr className={styles.hr} />
-                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`} onClick={() => { closeModal('tempModal') }}>Cancel</button>
+                    <button className={`${styles.modalBtn} ${styles.cancelBtn}`} onClick={() => { closeModal('tempModal') }}>취소</button>
                     <button className={`${styles.modalBtn} ${styles.makeBtn}`} onClick={submitCollection}>Ok</button>
                 </div>
             </div >

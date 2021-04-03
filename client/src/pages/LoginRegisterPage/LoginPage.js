@@ -42,19 +42,19 @@ function LoginPage(props) {
         <div className={styles.container}>
             <div className={styles.loginRegisterPage}>
                 <div className={styles.formBox}>
-                    <h2>Log In</h2>
+                    <h2>로그인</h2>
 
                     <hr className={styles.hr} />
                     <form onSubmit={onSubmitHandler}>
-                        <label for='email'>Email</label>
+                        <label for='email'>이메일</label>
                         <input type="email" value={Email} onChange={onEmailHandler} placeholder='Enter Email' name='email' id='email' className={styles.input} required></input>
 
-                        <label for='pwd'>Password</label>
+                        <label for='pwd'>비밀번호</label>
                         <input type='password' value={Password} onChange={onPasswordHandler} placeholder='Enter password' name='pwd' id='password' className={styles.input} required></input>
 
                         <hr className={styles.hr} />
 
-                        <button type='submit' className={styles.button}>Log In</button>
+                        <button type='submit' className={styles.button}>로그인</button>
                     </form>
                 </div>
             </div>

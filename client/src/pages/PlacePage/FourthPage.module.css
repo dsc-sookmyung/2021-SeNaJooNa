@@ -16,7 +16,7 @@
     background-color: #805ACB;
     color: white;
     padding: 4px;
-    width: 145px;
+    width: 100px;
 }
 
 .gridContainer{
@@ -119,7 +119,7 @@
 }
 
 .leaveCommentBtn{
-    width: 70px;
+    width: 100px;
     border: 1.5px solid #805ACB;
     outline: none;
     background-color: white;

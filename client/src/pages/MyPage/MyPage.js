@@ -46,7 +46,7 @@ function MyPage(props) {
   return (
     <div>
       <div className={styles.part1}>
-        <div className={styles.text}>Collection I made</div>
+        <div className={styles.text}>내가 만든 컬렉션</div>
         <div className={styles.gridContainer}>
           {collections.map((collection) => (
             <CollectionCard collection={collection} key={collection._id} />
@@ -57,7 +57,7 @@ function MyPage(props) {
         </div>
       </div>
       <div className={styles.part2}>
-        <div className={styles.text}>Collection I like</div>
+        <div className={styles.text}>좋아요를 누른 컬렉션</div>
         <div className={styles.gridContainer}>
           {likeCollections.map((like) => {
             return (
@@ -70,7 +70,7 @@ function MyPage(props) {
         </div>
       </div>
       <div className={styles.part3}>
-        <div className={styles.text}>Place I like</div>
+        <div className={styles.text}>좋아요를 누른 플레이스</div>
         <PlaceCardsDiv isAuth={isAuth} user={user} collection={undefined} isLiked={true} />
       </div>
     </div>

@@ -61,24 +61,24 @@ function RegisterPage(props) {
         <div className={styles.container}>
             <div className={styles.loginRegisterPage}>
                 <div className={styles.formBox}>
-                    <h2>Register</h2>
+                    <h2>회원가입</h2>
 
                     <hr className={styles.hr} />
                     <form onSubmit={onSubmitHandler}>
-                        <label for='email'>Email</label>
+                        <label for='email'>이메일</label>
                         <input type="email" value={Email} onChange={onEmailHandler} placeholder='Enter Email' name='email' id='email' className={styles.input} required></input>
 
-                        <label for='name'>Name</label>
+                        <label for='name'>닉네임</label>
                         <input type="text" value={Name} onChange={onNameHandler} placeholder='Enter Name' name='name' id='name' className={styles.input} required></input>
 
-                        <label for='pwd'>Password</label>
+                        <label for='pwd'>비밀번호</label>
                         <input type='password' value={Password} onChange={onPasswordHandler} placeholder='Enter password' name='pwd' id='password' className={styles.input} required></input>
 
-                        <label for='confirmpwd'>Confirm Password</label>
+                        <label for='confirmpwd'>비밀번호 확인</label>
                         <input type='password' value={ConfirmPassword} onChange={onConfirmPasswordHandler} placeholder='Enter password' name='pwd' id='password' className={styles.input} required></input>
                         <hr className={styles.hr} />
 
-                        <button type='submit' className={styles.button}>Register</button>
+                        <button type='submit' className={styles.button}>등록</button>
                     </form>
                 </div>
             </div>

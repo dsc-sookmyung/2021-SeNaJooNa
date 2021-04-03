@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -31,26 +31,26 @@ function Header(props) {
                 <a href="/" className={styles.logo}>OurPlace</a>
             </div>
             <div className={styles.search}>
-                <select className={styles.select} value={searchType} onChange={(e)=>{setSearchType(e.target.value)}}>
+                <select className={styles.select} value={searchType} onChange={(e) => { setSearchType(e.target.value) }}>
                     <option value='collection'>컬렉션</option>
                     <option value='place'>장소</option>
                 </select>
-                <input type='text' placeholder='Search..' className={styles.input} value={searchQuery} onChange={(e)=>{setSearchQuery(e.target.value)}}>
+                <input type='text' placeholder='검색어를 입력하세요' className={styles.input} value={searchQuery} onChange={(e) => { setSearchQuery(e.target.value) }}>
                 </input>
-                    <button type='submit' className={styles.button} onClick={()=>{window.location.href=`/search?type=${searchType}&query=${searchQuery}`}}>
-                        <FontAwesomeIcon icon={faSearch} />
-                    </button>
+                <button type='submit' className={styles.button} onClick={() => { window.location.href = `/search?type=${searchType}&query=${searchQuery}` }}>
+                    <FontAwesomeIcon icon={faSearch} />
+                </button>
             </div>
             {(user.userData && !user.userData.isAuth) ?
                 <div className={styles.loginDiv}>
-                    <a href="/login"  className={styles.login}>LOG IN</a>
+                    <a href="/login" className={styles.login}>로그인</a>
                     &nbsp;&nbsp;<span className={styles.separator}>|</span>&nbsp;&nbsp;
-                    <a href="register"  className={styles.login}>REGISTER</a>
+                    <a href="register" className={styles.login}>회원가입</a>
                 </div> :
                 <div className={styles.loginDiv}>
-                    <Link to='/mypage' className={styles.login}>MY PAGE</Link>
+                    <Link to='/mypage' className={styles.login}>마이페이지</Link>
                     &nbsp;&nbsp;<span className={styles.separator}>|</span>&nbsp;&nbsp;
-                    <a onClick={onClickHandler}  className={styles.login}>LOGOUT</a>
+                    <a onClick={onClickHandler} className={styles.login}>로그아웃</a>
                 </div>
             }
         </div>

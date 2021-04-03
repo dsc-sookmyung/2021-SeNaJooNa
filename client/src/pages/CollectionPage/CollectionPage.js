@@ -93,7 +93,7 @@ function CollectionPage(props) {
                         <button onClick={onUpdateHandler} className={styles.like}>수정</button>
                     </div> :
                     <div className={styles.floatRight}>
-                        <button onClick={collectionLikeHandler} className={styles.like}>{isLiked ? "❤" : "♡"} Collection Like </button>
+                        <button onClick={collectionLikeHandler} className={styles.like}>좋아요 {isLiked ? "❤" : "♡"} </button>
                     </div>
                 }
 
