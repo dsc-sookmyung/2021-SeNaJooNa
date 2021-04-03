@@ -216,3 +216,9 @@
 .makeBtn{
     background-color: #4caf50;
 }
+
+.collectionName {
+    text-decoration: white;
+    color: #805ACB;
+    font-weight: 800;
+}
