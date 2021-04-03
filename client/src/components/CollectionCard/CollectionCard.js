@@ -18,7 +18,7 @@ function CollectionCard(props) {
             if (response.payload.isAuth) {
                 setIsAuth(true)
                 setUser(response.payload._id);
-                axios.get(`/api/likeCollections/${props.collection._id}`).then((response) => {
+                axios.get(`/api/like/collection/${props.collection._id}`).then((response) => {
                     if (response.data.like)
                         setIsLiked(true)
                     else
@@ -35,7 +35,7 @@ function CollectionCard(props) {
         if (isAuth) {
             if (isLiked) {
                 console.log("취소")
-                axios.delete('/api/likeCollections', { data: doc }).then((response) => {
+                axios.delete('/api/like/collection', { data: doc }).then((response) => {
                     console.log(response);
                     setIsLiked(false);
                     setLikeCount(likeCount - 1);
@@ -44,7 +44,7 @@ function CollectionCard(props) {
             }
             else {
                 console.log("좋아요")
-                axios.post('/api/likeCollections', doc).then((response) => {
+                axios.post('/api/like/collection', doc).then((response) => {
                     console.log(response);
                     setIsLiked(true);
                     setLikeCount(likeCount + 1);

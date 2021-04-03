@@ -23,7 +23,7 @@ function CollectionPage(props) {
             if (response.payload.isAuth) {
                 setIsAuth(true)
                 setUser(response.payload._id)
-                axios.get(`/api/likeCollections/${props.location.state.collection._id}`).then((response) => {
+                axios.get(`/api/like/collection/${props.location.state.collection._id}`).then((response) => {
                     if (response.data.like)
                         setIsLiked(true)
                     else
@@ -69,13 +69,13 @@ function CollectionPage(props) {
         }
         console.log(doc);
         if (isLiked) {
-            axios.delete('/api/likeCollections', { data: doc }).then((response) => {
+            axios.delete('/api/like/collection', { data: doc }).then((response) => {
                 setIsLiked(false);
             })
         }
         else {
             console.log("좋아요")
-            axios.post('/api/likeCollections', doc).then((response) => {
+            axios.post('/api/like/collection', doc).then((response) => {
                 setIsLiked(true);
             })
         }
@@ -92,7 +92,6 @@ function CollectionPage(props) {
                     }}
                         className={styles.categoryName}
                     >
-
                         {category.title}
                     </Link> &#8250; {collection.title}
                 </div>

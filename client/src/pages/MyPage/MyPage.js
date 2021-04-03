@@ -37,7 +37,7 @@ function MyPage(props) {
 
   useEffect(() => {
     console.log("안녕");
-    axios.get(`/api/likeCollections/`).then((response) => {
+    axios.get(`/api/like/collection`).then((response) => {
       setLikeCollections(response.data);
       console.log(response.data);
     });

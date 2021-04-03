@@ -36,7 +36,7 @@ app.use(cookieParser());
 app.use('/api/users', require('./routes/users'));
 app.use('/api/category', require('./routes/categories'));
 app.use('/api/collections', require('./routes/collections'));
-app.use('/api/likeCollections', require('./routes/likeCollections'));
+app.use('/api/like/Collection', require('./routes/likeCollections'));
 app.use('/api/place', require('./routes/place'));
 app.use('/api/places', require('./routes/places'));
 app.use('/api/like/place', require('./routes/likeplaces'));
