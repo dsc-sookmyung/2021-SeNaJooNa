@@ -1,0 +1,228 @@
+.fourthPage{
+    padding: 20px;
+    background-color: lavender;
+}
+
+.text{
+    display: inline-block;
+    margin: 0px 0px 30px;
+}
+
+.addTo{
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #805ACB;
+    color: white;
+    padding: 4px;
+    width: 100px;
+}
+
+.gridContainer{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 30px;
+}
+
+.left{
+    grid: 1;
+    background-color: white;
+    padding: 10px;
+}
+
+.right{
+    grid: 1;
+    background-color: white;
+    padding: 10px;
+}
+
+.topPhoto{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #f1f1f1;
+}
+
+.placePhoto{
+    background-color: white;
+    grid: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+}
+.placePhotoThumb{
+    background-color: white;
+    grid-column: 1 / span 2;
+    grid-row:1 / span 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 5px;
+}
+.placePhotoImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.deleteIcon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+}
+.imageBtn{
+    width: 70px;
+    border: 1.5px solid #805ACB;
+    outline: none;
+    background-color: white;
+    color: #805ACB;
+    padding: 5px 3px;
+    font-size: 15px;
+}
+
+.bottomInfo{
+    background-color: #f1f1f1;
+    margin: 10px;
+}
+
+.like{
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #805ACB;
+    color: white;
+    padding: 4px 10px;
+    width: 105px;
+}
+
+.textBig{
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.commentInput{
+    margin: 5px 10px 0px;
+    width: 60%;
+    font-size: 15px;
+    padding: 5px 10px;
+}
+
+.leaveCommentBtn{
+    width: 100px;
+    border: 1.5px solid #805ACB;
+    outline: none;
+    background-color: white;
+    color: #805ACB;
+    padding: 5px 3px;
+    font-size: 15px;
+}
+
+.rightHr{
+    border: 1px solid lightgray;
+    margin: 10px 5px 5px;
+}
+
+/* Modal */
+.tempModal{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.4);
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.modalContent{
+    background-color: #fefefe;
+    width: 1200px;
+    padding: 30px;
+    border: 1px solid #888;
+    margin: 30px auto;
+}
+
+.close{
+    float: right;
+    font-size: 25px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+.close:hover, .close:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hr{
+    border: 1px solid #f1f1f1;
+    margin: 15px 0px 20px;
+}
+
+.selectCollectionDiv{
+    margin: 50px 0px 25px;
+    font-size: 17px;
+}
+.selectCollection{
+    font-size: 17px;
+    width: 180px;
+}
+
+.popupGridContainer{
+    display: grid;
+    grid-template-columns: 200px 880px;
+    gap: 40px;
+}
+
+.popupBtn{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 15px 0px;
+    background-color: #805ACB;
+    color: white;
+    font-size: 17px;
+    height: 50px;
+}
+
+.modalBtn{
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    font-size: 17px;
+}
+.modalBtn:hover{
+    opacity: 1;
+}
+.cancelBtn{
+    background-color: #f44336;
+}
+.makeBtn{
+    background-color: #4caf50;
+}
+
+.collectionName {
+    text-decoration: none;
+    color: #805ACB;
+    font-weight: 800;
+    cursor: pointer;
+}
+.collectionName:hover{
+    text-decoration: underline;
+}

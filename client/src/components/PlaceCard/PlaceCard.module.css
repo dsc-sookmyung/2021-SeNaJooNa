@@ -1,0 +1,144 @@
+.placeCard{
+    width: 200px;
+    height: 220px;
+    background-color: gray;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.like{
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.7);
+    color: #f1f1f1;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    top: 10px;
+    right: 10px;
+}
+.like:hover{
+    cursor: pointer;
+}
+
+.linkTag{
+    text-decoration: none;
+}
+
+.imgContainer{
+    width: 200px;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: white;
+}
+.img{
+    width: 100%;
+    height: 100%;
+}
+
+.title{
+    color: #f1f1f1;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 5px 10px;
+    overflow: hidden;
+}
+
+.detail{
+    color: #f1f1f1;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+/* PlaceEmptyCard */
+.placeEmptyCard{
+    width: 200px;
+    height: 220px;
+    position: relative;
+    border-radius: 20px;
+    background-color: gray;
+}
+
+.emptyText{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 150px;
+}
+
+/* PlaceForm */
+.formBox{
+    flex: 1;
+    padding: 20px;
+    border: 3px solid #805ACB;
+    background-color: white;
+}
+
+.hr{
+    border: 1px solid #f1f1f1;
+    margin: 25px 0px;
+}
+
+.input{
+    padding: 12px 20px;
+    margin: 20px 0px;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.imageLabel{
+    margin: 25px 0px;
+}
+
+.button{
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    font-size: 17px;
+}
+.button:hover{
+    opacity: 1;
+}
+.cancelBtn{
+    background-color: #f44336;
+}
+.makeBtn{
+    background-color: #4caf50;
+}
+
+/* PlaceCardsDiv */
+.gridContainer{
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px 0px; 
+    padding-bottom: 30px;
+}
+
+.gridPlace{
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.cardContainer {
+    display: flex;
+    position: relative;
+}
+
+.deleteIcon {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    z-index: 1;
+    cursor: pointer;
+}

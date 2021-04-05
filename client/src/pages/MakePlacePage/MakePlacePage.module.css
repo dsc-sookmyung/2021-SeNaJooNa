@@ -1,0 +1,10 @@
+.container{
+    background-color: #f2f2f2;
+}
+
+.makePlacePage{
+    width: 800px;
+    display: flex;
+    margin: auto;
+    padding: 100px;
+}

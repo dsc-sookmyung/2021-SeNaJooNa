@@ -1,0 +1,90 @@
+.mainPage{
+    padding: 5px 30px;
+    height: 250px;
+}
+
+.text{
+    margin: 30px;
+    font-size: 30px;
+}
+
+/* ----- slide ----- */
+.slideBox{
+    border: 1.5px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 10px;
+}
+
+.slideClick{
+    font-size: 100px;
+    padding-bottom: 20px;
+    cursor: pointer;
+}
+.slideClick:hover{
+    background-color: lightgray;
+}
+
+.cardBox{
+    overflow: hidden;
+}
+
+.categoryCards{
+    display: flex;
+    gap: 40px;
+    transition: 0.6s;
+}
+/* ----- slide ----- */
+
+.part1{
+    background-color: lavender;
+    height: 350px;
+}
+.part2{
+    background-color:ivory;
+}
+.part3{
+    background-color:honeydew;
+}
+.part4{
+    background-color: lavenderblush;
+}
+
+.part{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.textBig{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.textSmall{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: gray;
+}
+
+/* .btn{
+    font-size: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+}
+
+.collectionCards{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.placeCards{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+} */

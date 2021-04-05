@@ -1,0 +1,24 @@
+.footer{
+    padding: 10px 0;
+    border-top: 1px solid #d9d9d9;
+    background-color: #f1f1f1;
+    color: #888;
+    display: flex;
+    align-items: flex-start;
+}
+
+.logo{
+    margin-left: 50px;
+    width: 170px;
+    text-align: center;
+    font-size:30px;
+    font-weight: 400;
+    color: #805ACB;
+    display: inline-block;
+}
+
+.info{
+    margin-left: 150px;
+    font-size: 12px;
+    display: inline-block;
+}

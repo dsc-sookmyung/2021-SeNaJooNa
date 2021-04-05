@@ -1,0 +1,38 @@
+.part1{
+    padding: 30px;
+    background-color: lavender;
+}
+
+.part2{
+    padding: 30px;
+    background-color: lavenderblush;
+}
+
+.textBig{
+    font-size: 20px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+.textSmall{
+    margin-left: 30px;
+    margin-bottom: 30px;
+    padding-left: 40px;
+}
+
+.gridContainer{
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 0px; 
+    
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.grid4x2{
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.grid4x1{
+    grid-template-rows: repeat(1, 1fr);
+}

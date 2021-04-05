@@ -1,0 +1,87 @@
+.container{
+    background-color: #f2f2f2;
+}
+
+.makeCollectionPage{
+    width: 800px;
+    display: flex;
+    margin: auto;
+    padding: 100px;
+}
+
+.formBox{
+    flex: 1;
+    padding: 20px;
+    border: 3px solid #805ACB;
+    background-color: white;
+}
+
+.hr{
+    border: 1px solid #f1f1f1;
+    margin: 25px 0px;
+}
+
+.input{
+    padding: 12px 20px;
+    margin: 15px 0px;
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.radioDiv{
+    font-size: 17px;
+    margin: 25px 0px;
+}
+.radioInput{
+    cursor: pointer;
+}
+.radioLabel{
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.selectCategoryDiv{
+    margin: 25px 0px;
+    font-size: 17px;
+}
+.selectCategory{
+    font-size: 17px;
+    width: 180px;
+}
+
+.imageLabel{
+    margin: 25px 0px;
+    font-size: 17px;
+}
+
+.button{
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    font-size: 17px;
+}
+.button:hover{
+    opacity: 1;
+}
+.cancelBtn{
+    background-color: #f44336;
+}
+.makeBtn{
+    background-color: #4caf50;
+}
+.imgContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.img{
+    width: 100%;
+}

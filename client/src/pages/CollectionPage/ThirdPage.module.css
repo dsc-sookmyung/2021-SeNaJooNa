@@ -1,0 +1,46 @@
+.collectionPage{
+    background-color:lavender;
+    padding: 20px;
+}
+
+.textBig{
+    display: inline-block;
+    margin: 0px 30px 30px 30px;
+    font-size: 20px;
+}
+
+.categoryName {
+    text-decoration: none;
+    color: #805ACB;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.categoryName:hover{
+    text-decoration: underline;
+}
+
+.textSmall{
+    margin-left: 30px;
+    margin-bottom: 30px;
+    padding-left: 10px;
+}
+
+.floatRight{
+    float: right;
+}
+
+.like{
+    float: right;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #805ACB;
+    color: white;
+    padding: 4px 10px;
+    margin-left: 5px;
+}
+
+.floatRight{
+    float: right;
+}

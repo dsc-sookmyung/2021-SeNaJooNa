@@ -1,0 +1,48 @@
+.categoryCard{
+    width: 250px;
+    height: 170px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin: 0px 5px;
+}
+
+.imgContainer{
+    width: 250px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.img{
+    width: 100%;
+    height: 100%;
+}
+
+.content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: #f1f1f1; 
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+.detail{
+    font-size: 15px;
+    font-weight: 500;
+}
