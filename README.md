@@ -22,8 +22,6 @@ OurPlace. 전 프로젝트인 OutStory는 우리들만의 이야기를 기록하
 
 ## 결과물
 
-<iframe width="600" height="500" src="https://www.youtube.com/watch?v=2U9i84hik5s&feature=youtu.be"  />
-
 [![Video Label](http://img.youtube.com/vi/2U9i84hik5s/0.jpg)](https://www.youtube.com/watch?v=2U9i84hik5s&feature=youtu.be)
 
 ## 주요 기능
